@@ -51,6 +51,11 @@ The Python package is intentionally modular. Each file declares its numerical or
 | `stochastic` | Brownian paths, quadratic variation, Euler–Maruyama, geometric Brownian motion |
 | `geometry` | Metrics, coordinate transformations, Christoffel symbols, exterior derivatives |
 | `structures` | Finite-group validation, prime fields, Boolean algebra, tropical semirings |
+| `complex_calc` | Complex finite-difference diagnostics and numerical contour integrals |
+| `pde` | Bounded 1D heat/wave finite-difference solvers with stability checks |
+| `optimization` | Bisection, safeguarded Newton and golden-section search |
+| `transforms` | Direct DFT/IDFT, convolutions and a finite z-transform |
+| `lambda_calc` | Safe capture-avoiding formal lambda-term reduction |
 
 For instance, exact algebra and numerical integration can coexist without conflating their guarantees:
 
@@ -64,7 +69,7 @@ assert p.differentiate().coefficients == (Fraction(0), Fraction(2))
 assert abs(simpson(lambda x: x*x, 0, 1, n=100) - 1/3) < 1e-12
 ```
 
-The fractional, stochastic, symbolic, and geometry modules each cover **specific examples**, not entire theories. A passing test proves its stated contract only. See module documentation for limitations.
+The fractional, stochastic, symbolic, geometry, complex, and PDE modules each cover **specific examples**, not entire theories. A passing test proves its stated contract only. See module documentation for limitations.
 
 ## Branch-per-paradigm policy
 
