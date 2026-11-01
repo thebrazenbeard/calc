@@ -17,6 +17,7 @@ This record distinguishes **GitHub writes/readbacks** from local tests and CI. I
 | Wave 8 structural calculus/algebra `main` | `71be02d54355ade5ddbec103ec29a1413c82fe45` | GitHub exact-head comparison; 19 hostile Wave 8 tests and 13 hostile Wave 7 tests; combined local test suite advanced past 690 passes during subsequent Wave 9 work |
 | Wave 9 advanced methods `main` | `26a8d9bb839337b2d7671800f52133439820d849` | GitHub exact-head comparison and remote differential-algebra source readback; 757/757 local Python tests, 14 independent hostile Wave 9 tests; offline wheel built and packaged topic manifest import confirmed |
 | Wave 10 foundations/explorer `main` | `11c271a4092a2b8781f612de40ee8cab4e1b405d` | GitHub exact-head comparison and remote explorer readback; exact polynomial integration/limit examples, offline interactive explorer source, secure CI contract; evidence-cache and root-solver defects fixed; 15 hostile Wave 10 tests; cloud Actions and browser UI remain unverified |
+| Wave 11 algebra/analysis `main` | `dace82ab209e3258bf4408540a6a432593dc5004` | GitHub exact-head comparison and remote affine-geometry source readback; 915/915 local Python tests, 12 independent hostile Wave 11 tests, offline wheel compilation/import with 63/78 topics marked implemented examples |
 
 Wave 4 review, including five module-focused independent hostile checks and a research-gap audit, raised the local suite to **261/261 passing tests** after repairs. The new tests cover overflow and precision failures in complex calculus, discrete transforms, PDEs, optimization and formal lambda-term reduction. The exact Wave 4 remote head was read back before subsequent waves were published.
 
@@ -24,7 +25,7 @@ The standard-library tests were executed with Python 3.12 in a local isolated wo
 
 ## Curated subject branches
 
-Each branch started from the exact Wave 2 `main` commit above and received its own `TOPIC.md` with an original subject guide. GitHub content readback checked that file's slug on all 19 branches; no failures were observed. All 19 branches were subsequently merged forward to the Wave 4 shared foundation; the table below records their **original topic-guide commits**, not their present branch heads. These branches are **research/teaching entry points**, not independently complete solvers.
+Each branch started from the exact Wave 2 `main` commit above and received its own `TOPIC.md` with an original subject guide. GitHub content readback checked that file's slug on all 19 branches; no failures were observed. Branches are explicitly merged forward as shared changes are published; the table below records their **original topic-guide commits**, not their present branch heads. These branches are **research/teaching entry points**, not independently complete solvers.
 
 | Branch | Exact `TOPIC.md` commit SHA |
 | --- | --- |
@@ -51,6 +52,6 @@ Each branch started from the exact Wave 2 `main` commit above and received its o
 ## Known boundaries
 
 - The catalogue is open-ended: an indexed name is not an implementation or a proof.
-- The 19 topic branches were verified at Wave 4; later `main` changes are not automatically present on them until the next explicit merge-forward.
+- Topic branches must be explicitly merged forward to inherit subsequent `main` changes; a publication receipt is not itself proof of the current branch head.
 - No repository license has been chosen. The 34 linked external research sources have independent terms.
 - The recorded tests do not formally verify the numerical or stochastic algorithms for all possible inputs.
