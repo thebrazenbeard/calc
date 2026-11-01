@@ -9,32 +9,53 @@
       "slug": "limits",
       "family": "calculus-foundations",
       "kind": "analysis",
-      "scope": "Limits of real-valued functions through approach and epsilon-delta conditions.",
-      "status": "documented",
-      "evidence_level": "indexed_only",
+      "scope": "Exact rational epsilon-delta witnesses for bounded-degree polynomials, plus nonproof one-sided numerical samples.",
+      "status": "implemented",
+      "evidence_level": "example_tested",
       "guide": null,
       "branch": null,
       "source_ids": [
         "S01"
       ],
-      "bindings": [],
-      "test_paths": [],
+      "bindings": [
+        {
+          "module": "calc.limits",
+          "symbols": [
+            "polynomial_limit_certificate",
+            "EpsilonDeltaCertificate",
+            "one_sided_samples"
+          ]
+        }
+      ],
+      "test_paths": [
+        "tests/test_limits.py"
+      ],
       "formal_proof": false
     },
     {
       "slug": "continuity",
       "family": "calculus-foundations",
       "kind": "analysis",
-      "scope": "Continuity of scalar functions at points and over domains.",
-      "status": "documented",
-      "evidence_level": "indexed_only",
+      "scope": "Constructive epsilon-delta continuity examples for rational polynomials; no arbitrary-function continuity decider.",
+      "status": "implemented",
+      "evidence_level": "example_tested",
       "guide": null,
       "branch": null,
       "source_ids": [
         "S01"
       ],
-      "bindings": [],
-      "test_paths": [],
+      "bindings": [
+        {
+          "module": "calc.limits",
+          "symbols": [
+            "polynomial_limit_certificate",
+            "EpsilonDeltaCertificate"
+          ]
+        }
+      ],
+      "test_paths": [
+        "tests/test_limits.py"
+      ],
       "formal_proof": false
     },
     {
@@ -66,16 +87,28 @@
       "slug": "integral",
       "family": "calculus-foundations",
       "kind": "analysis",
-      "scope": "Accumulation and Riemann-type definite integration, not a general symbolic integrator.",
-      "status": "documented",
-      "evidence_level": "indexed_only",
+      "scope": "Exact rational polynomial antiderivatives, definite integrals, substitution and integration by parts; no general symbolic integrator.",
+      "status": "implemented",
+      "evidence_level": "example_tested",
       "guide": "docs/topics/integral.md",
       "branch": "topic/integral",
       "source_ids": [
         "S01"
       ],
-      "bindings": [],
-      "test_paths": [],
+      "bindings": [
+        {
+          "module": "calc.integrals",
+          "symbols": [
+            "polynomial_antiderivative",
+            "definite_integral",
+            "substitution_integral",
+            "integration_by_parts"
+          ]
+        }
+      ],
+      "test_paths": [
+        "tests/test_integrals.py"
+      ],
       "formal_proof": false
     },
     {
@@ -124,16 +157,26 @@
       "slug": "asymptotic-analysis",
       "family": "calculus-foundations",
       "kind": "analysis",
-      "scope": "Behavior of functions and expansions in limiting regimes.",
-      "status": "documented",
-      "evidence_level": "indexed_only",
+      "scope": "Exact leading-order growth comparisons of bounded rational functions at positive infinity or zero from the right.",
+      "status": "implemented",
+      "evidence_level": "example_tested",
       "guide": null,
       "branch": null,
       "source_ids": [
         "S11"
       ],
-      "bindings": [],
-      "test_paths": [],
+      "bindings": [
+        {
+          "module": "calc.asymptotics",
+          "symbols": [
+            "RationalAsymptotic",
+            "compare_growth"
+          ]
+        }
+      ],
+      "test_paths": [
+        "tests/test_asymptotics.py"
+      ],
       "formal_proof": false
     },
     {
@@ -1399,16 +1442,27 @@
       "slug": "ring-theory",
       "family": "algebra-foundations",
       "kind": "algebra",
-      "scope": "Associative additive and multiplicative structures with distributivity.",
-      "status": "documented",
-      "evidence_level": "indexed_only",
+      "scope": "Finite integer residue rings, principal ideals, annihilators, quotients, and pairwise-coprime CRT examples.",
+      "status": "implemented",
+      "evidence_level": "example_tested",
       "guide": null,
       "branch": null,
       "source_ids": [
         "S26"
       ],
-      "bindings": [],
-      "test_paths": [],
+      "bindings": [
+        {
+          "module": "calc.rings",
+          "symbols": [
+            "ResidueRing",
+            "PrincipalIdeal",
+            "chinese_remainder"
+          ]
+        }
+      ],
+      "test_paths": [
+        "tests/test_rings.py"
+      ],
       "formal_proof": false
     },
     {
@@ -1440,16 +1494,27 @@
       "slug": "module-theory",
       "family": "algebra-foundations",
       "kind": "algebra",
-      "scope": "Abelian groups acted on by a ring with distributive scalar multiplication.",
-      "status": "documented",
-      "evidence_level": "indexed_only",
+      "scope": "Finite free modules over integer residue rings, generated submodules, and quotient cosets.",
+      "status": "implemented",
+      "evidence_level": "example_tested",
       "guide": null,
       "branch": null,
       "source_ids": [
         "S26"
       ],
-      "bindings": [],
-      "test_paths": [],
+      "bindings": [
+        {
+          "module": "calc.modules",
+          "symbols": [
+            "ResidueFreeModule",
+            "FiniteSubmodule",
+            "QuotientModule"
+          ]
+        }
+      ],
+      "test_paths": [
+        "tests/test_modules.py"
+      ],
       "formal_proof": false
     },
     {
@@ -1726,16 +1791,28 @@
       "slug": "representation-theory",
       "family": "algebra-structures",
       "kind": "algebra",
-      "scope": "Algebraic actions represented as linear transformations.",
-      "status": "documented",
-      "evidence_level": "indexed_only",
+      "scope": "Exact rational bounded representations of finite groups, regular/trivial examples, characters, and intertwiners.",
+      "status": "implemented",
+      "evidence_level": "example_tested",
       "guide": null,
       "branch": null,
       "source_ids": [
         "S27"
       ],
-      "bindings": [],
-      "test_paths": [],
+      "bindings": [
+        {
+          "module": "calc.representations",
+          "symbols": [
+            "FiniteGroup",
+            "RationalRepresentation",
+            "regular_representation",
+            "character_pairing"
+          ]
+        }
+      ],
+      "test_paths": [
+        "tests/test_representations.py"
+      ],
       "formal_proof": false
     },
     {
@@ -1770,16 +1847,26 @@
       "slug": "algebraic-geometry",
       "family": "algebra-structures",
       "kind": "algebra",
-      "scope": "Polynomial varieties, ideals, and their geometric correspondences.",
-      "status": "documented",
-      "evidence_level": "indexed_only",
+      "scope": "Exact rational affine polynomial systems, bounded point searches, Jacobians, and Groebner ideal membership examples.",
+      "status": "implemented",
+      "evidence_level": "example_tested",
       "guide": null,
       "branch": null,
       "source_ids": [
         "S28"
       ],
-      "bindings": [],
-      "test_paths": [],
+      "bindings": [
+        {
+          "module": "calc.affine_geometry",
+          "symbols": [
+            "AffineSystem",
+            "partial_derivative"
+          ]
+        }
+      ],
+      "test_paths": [
+        "tests/test_affine_geometry.py"
+      ],
       "formal_proof": false
     },
     {
