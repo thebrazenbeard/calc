@@ -21,6 +21,10 @@ An open, source-conscious **atlas of calculus and algebra**: a taxonomy of mathe
 - `docs/REVIEW_WAVE7.md` — independent verification of geometric algebra and numerical PDE modules.
 - `docs/REVIEW_WAVE8.md` — independent verification of spectral/umbral/categorical/homological/tensor modules.
 - `docs/REVIEW_WAVE9.md` — independent verification of finite measure, control and advanced algebra modules.
+- `docs/CI_QUALIFICATION.md` — build/test workflow, offline package smoke test, and cloud CI evidence limits.
+- `docs/MATH_VERIFICATION.md` — independent mathematical oracles and repaired numerical root regressions.
+- `docs/REVIEW_WAVE10.md` — hostile Wave 10 mathematical and evidence-integrity checks.
+- `explorer/index.html` — dependency-free interactive visual explorer for selected numerical calculus examples.
 
 The CLI shows the subject map without executing arbitrary mathematical expressions:
 
@@ -30,6 +34,10 @@ PYTHONPATH=src python -m calc topic fractional
 PYTHONPATH=src python -m calc evidence fractional --json
 PYTHONPATH=src python -m unittest discover -s tests -v
 ```
+
+For a browser-based illustration, open `explorer/index.html` directly. It uses
+bounded numerical plots and clearly labels approximations; it is not a
+mathematical proof system or an arbitrary-expression evaluator.
 
 ## Mathematical domains
 
@@ -89,6 +97,8 @@ The Python package is intentionally modular. Each file declares its numerical or
 | `free_algebra` | Rational noncommutative word polynomials and formal derivations |
 | `operator_algebra` | Rational matrix adjoints, projections and finite star-algebra closure |
 | `differential_algebra` | Rational finite-jet polynomials with formal total derivatives |
+| `limits` | Exact rational epsilon–delta certificates for bounded polynomial cases; numerical diagnostics are not proofs |
+| `integrals` | Exact rational polynomial antiderivatives, definite integrals and elementary FTC identities |
 
 For instance, exact algebra and numerical integration can coexist without conflating their guarantees:
 
