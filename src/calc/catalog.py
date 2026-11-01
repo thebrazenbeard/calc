@@ -85,6 +85,10 @@ _IMPLEMENTED = {
     "tensor-algebra",
     "measure-theory", "optimal-control", "noncommutative-algebra",
     "operator-algebra", "differential-algebra",
+    "integral",
+    "limits", "continuity",
+    "asymptotic-analysis", "ring-theory", "module-theory",
+    "representation-theory", "algebraic-geometry",
 }
 
 TOPICS: tuple[Topic, ...] = tuple(

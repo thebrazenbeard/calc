@@ -2,14 +2,24 @@ name: Python mathematics checks
 on:
   push:
   pull_request:
+  workflow_dispatch:
+
+# Source is read-only even when testing a forked pull request.
+permissions:
+  contents: read
+
 jobs:
   test:
     runs-on: ubuntu-latest
+    timeout-minutes: 20
     strategy:
+      fail-fast: false
       matrix:
-        python-version: ['3.11', '3.12', '3.13']
+        python-version: ["3.11", "3.12", "3.13"]
     steps:
       - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
       - uses: actions/setup-python@v5
         with:
           python-version: ${{ matrix.python-version }}
@@ -17,4 +27,32 @@ jobs:
         run: PYTHONPATH=src python -m unittest discover -s tests -v
       - name: Compile source
         run: python -m compileall -q src
+
+  package:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    needs: test
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Prepare build frontend
+        # Provisioning build tools may use PyPI; the wheel/install steps below
+        # do not download runtime dependencies or invoke isolated builds.
+        run: python -m pip install --disable-pip-version-check "setuptools>=68" wheel
+      - name: Build package and smoke-test its installed wheel
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m pip wheel --no-deps --no-build-isolation --wheel-dir dist .
+          python -m venv "$RUNNER_TEMP/calc-wheel-smoke"
+          "$RUNNER_TEMP/calc-wheel-smoke/bin/python" -m pip install --no-index --no-deps dist/*.whl
+          (
+            cd "$RUNNER_TEMP"
+            "$RUNNER_TEMP/calc-wheel-smoke/bin/python" -c 'from fractions import Fraction; from calc.algebra import Polynomial; from calc.evidence import load_evidence; assert Polynomial((1,0,1)).differentiate().coefficients == (Fraction(0), Fraction(2)); assert any(t["slug"] == "fractional" for t in load_evidence()["topics"])'
+            "$RUNNER_TEMP/calc-wheel-smoke/bin/calc-atlas" evidence fractional --json
+          )
 
