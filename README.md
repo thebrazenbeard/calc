@@ -24,6 +24,7 @@ An open, source-conscious **atlas of calculus and algebra**: a taxonomy of mathe
 - `docs/CI_QUALIFICATION.md` — build/test workflow, offline package smoke test, and cloud CI evidence limits.
 - `docs/MATH_VERIFICATION.md` — independent mathematical oracles and repaired numerical root regressions.
 - `docs/REVIEW_WAVE10.md` — hostile Wave 10 mathematical and evidence-integrity checks.
+- `docs/REVIEW_WAVE11.md` — independent finite-algebra, affine-geometry, and asymptotic verification.
 - `explorer/index.html` — dependency-free interactive visual explorer for selected numerical calculus examples.
 
 The CLI shows the subject map without executing arbitrary mathematical expressions:
@@ -99,6 +100,11 @@ The Python package is intentionally modular. Each file declares its numerical or
 | `differential_algebra` | Rational finite-jet polynomials with formal total derivatives |
 | `limits` | Exact rational epsilon–delta certificates for bounded polynomial cases; numerical diagnostics are not proofs |
 | `integrals` | Exact rational polynomial antiderivatives, definite integrals and elementary FTC identities |
+| `rings` | Finite integer residue rings, ideals, annihilators, quotients and CRT |
+| `modules` | Finite modules over residue rings, generated submodules and quotient cosets |
+| `representations` | Exact rational representations of small finite groups and character identities |
+| `affine_geometry` | Bounded rational affine polynomial systems, point witnesses and ideal membership |
+| `asymptotics` | Exact leading-order comparisons for bounded rational functions |
 
 For instance, exact algebra and numerical integration can coexist without conflating their guarantees:
 
