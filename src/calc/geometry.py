@@ -96,7 +96,10 @@ def metric_inner(
     if len(u) != n or len(v) != n:
         raise ValueError("tangent vectors must have the same dimension as point")
     g = _matrix(metric(x), n, symmetric=True)
-    return sum(u[i] * g[i][j] * v[j] for i in range(n) for j in range(n))
+    value = sum(u[i] * g[i][j] * v[j] for i in range(n) for j in range(n))
+    if not math.isfinite(value):
+        raise ValueError("metric inner product is nonfinite")
+    return value
 
 
 def coordinate_jacobian(
