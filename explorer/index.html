@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0c171b">
+  <meta name="description" content="Explore derivatives, tangent lines, and signed integrals with a transparent, offline mathematics instrument.">
+  <title>Calculus field notes · Continuum Calc</title>
+  <link rel="stylesheet" href="./styles.css">
+  <script defer src="./app.js"></script>
+</head>
+<body>
+  <a class="skip-link" href="#workspace">Skip to the explorer</a>
+  <div class="shell">
+    <header class="topbar">
+      <a class="brand" href="../README.md" aria-label="Continuum Calc project overview">
+        <span class="brand-mark" aria-hidden="true">∫</span>
+        <span>CONTINUUM <b>CALC</b></span>
+      </a>
+      <span class="topbar-note">FIELD NOTES <span aria-hidden="true">/</span> 001</span>
+      <span class="offline-pill"><span class="status-dot" aria-hidden="true"></span> OFFLINE LAB</span>
+    </header>
+
+    <main id="workspace">
+      <section class="intro" aria-labelledby="page-title">
+        <div>
+          <p class="eyebrow"><span class="eyebrow-line" aria-hidden="true"></span> INTERACTIVE NOTEBOOK · CALCULUS I</p>
+          <h1 id="page-title">A curve tells <em>three stories.</em></h1>
+          <p class="intro-copy">Choose a function, move a point, and mark an interval. Watch its shape, instantaneous slope, and accumulated change become the same picture.</p>
+        </div>
+        <div class="intro-symbol" aria-hidden="true">f<span>′</span>(x)</div>
+      </section>
+
+      <div class="workbench">
+        <aside class="control-panel" aria-labelledby="controls-title">
+          <div class="panel-heading">
+            <span class="step-tag">01 / INPUTS</span>
+            <h2 id="controls-title">Set up the experiment</h2>
+          </div>
+
+          <div class="control-field">
+            <label for="function-select">Function</label>
+            <select id="function-select">
+              <option value="square">f(x) = x²</option>
+              <option value="sine">f(x) = sin(x)</option>
+              <option value="cubic">f(x) = x³ − 3x</option>
+              <option value="lorentz">f(x) = 1 / (1 + x²)</option>
+            </select>
+            <p class="field-help">Four pre-defined functions. No expression execution.</p>
+          </div>
+
+          <div class="control-field">
+            <div class="label-row">
+              <label for="view-range">Horizontal view</label>
+              <output id="view-range-value" for="view-range">−3.5 to 3.5</output>
+            </div>
+            <input id="view-range" type="range" min="2" max="8" step="0.5" value="3.5">
+            <div class="scale-labels" aria-hidden="true"><span>Closer</span><span>Wider</span></div>
+          </div>
+
+          <div class="control-field tangent-control">
+            <div class="label-row">
+              <label for="point-slider">Tangent point</label>
+              <output id="point-value" for="point-slider">x = 1.00</output>
+            </div>
+            <input id="point-slider" type="range" min="0" max="1000" step="1" value="643" aria-describedby="point-help">
+            <p class="field-help" id="point-help">Drag on the graph or use the arrow keys here.</p>
+          </div>
+
+          <fieldset class="interval-fieldset">
+            <legend>Accumulation interval</legend>
+            <div class="bounds">
+              <div class="control-field">
+                <label for="integral-start">Start, a</label>
+                <input id="integral-start" type="number" value="-1.5" step="0.1" min="-8" max="8" inputmode="decimal">
+              </div>
+              <span class="bounds-divider" aria-hidden="true">→</span>
+              <div class="control-field">
+                <label for="integral-end">End, b</label>
+                <input id="integral-end" type="number" value="1.5" step="0.1" min="-8" max="8" inputmode="decimal">
+              </div>
+            </div>
+            <p class="field-help">Signed area: below the axis counts negatively.</p>
+          </fieldset>
+
+          <p class="input-error" id="input-error" role="status" aria-live="polite"></p>
+
+          <button class="reset-button" type="button" id="reset-button">↺ <span>Reset experiment</span></button>
+          <div class="panel-footnote"><span aria-hidden="true">✳</span> All calculations run in this page. Nothing is sent anywhere.</div>
+        </aside>
+
+        <section class="graph-panel" aria-labelledby="graph-title">
+          <div class="graph-header">
+            <div>
+              <span class="step-tag">02 / OBSERVE</span>
+              <h2 id="graph-title">The function landscape</h2>
+            </div>
+            <span class="graph-badge">LIVE VIEW</span>
+          </div>
+          <div class="graph-frame">
+            <div class="graph-legend" aria-label="Graph legend">
+              <span><i class="legend-line function-line" aria-hidden="true"></i> Function</span>
+              <span><i class="legend-line tangent-line" aria-hidden="true"></i> Tangent</span>
+              <span><i class="legend-swatch" aria-hidden="true"></i> Signed area</span>
+            </div>
+            <svg id="plot" viewBox="0 0 920 520" xmlns="http://www.w3.org/2000/svg" role="img" tabindex="0" aria-label="Function plot. Drag to move the tangent point, or use the tangent point slider.">
+              <title>Function graph</title>
+              <desc>A live function curve, its tangent at the selected point, and the signed integral between chosen bounds.</desc>
+              <rect x="68" y="34" width="830" height="428" fill="#12252a" rx="5"></rect>
+              <path d="M68 428 Q483 90 898 428" stroke="#6eeec9" stroke-width="3" fill="none"></path>
+            </svg>
+            <p class="graph-hint">DRAG THE PLOT TO MOVE THE TANGENT <span aria-hidden="true">↗</span></p>
+          </div>
+          <div class="graph-status" aria-live="polite"><span class="status-dot" aria-hidden="true"></span> <span id="graph-status-text">Ready for exploration</span><span class="graph-method">SVG · 600 curve samples</span></div>
+        </section>
+      </div>
+
+      <section class="readouts" aria-labelledby="readouts-title">
+        <div class="readouts-heading">
+          <span class="step-tag">03 / MEASURE</span>
+          <h2 id="readouts-title">Three ways to read the curve</h2>
+          <p>Reference formulas and numerical estimates are shown separately.</p>
+        </div>
+        <div class="readout-grid">
+          <article class="readout-card">
+            <div class="readout-top"><span>01 — HEIGHT</span><span class="readout-icon" aria-hidden="true">f</span></div>
+            <h3>Function value</h3>
+            <p class="readout-number"><output id="height-output" aria-live="polite">1.0000</output></p>
+            <p class="readout-equation" id="height-caption">f(1.00)</p>
+            <p class="readout-note">The vertical position of the selected point.</p>
+          </article>
+          <article class="readout-card readout-card-highlight">
+            <div class="readout-top"><span>02 — SLOPE</span><span class="readout-icon" aria-hidden="true">f′</span></div>
+            <h3>Instantaneous change</h3>
+            <p class="readout-number"><output id="derivative-output" aria-live="polite">2.0000</output></p>
+            <p class="readout-equation" id="derivative-caption">Reference derivative at x = 1.00</p>
+            <p class="readout-note">Central-difference estimate: <output id="derivative-estimate">≈ 2.0000</output></p>
+          </article>
+          <article class="readout-card">
+            <div class="readout-top"><span>03 — ACCUMULATION</span><span class="readout-icon" aria-hidden="true">∫</span></div>
+            <h3>Signed area</h3>
+            <p class="readout-number"><output id="integral-output" aria-live="polite">2.2500</output></p>
+            <p class="readout-equation" id="integral-caption">∫ from −1.5 to 1.5</p>
+            <p class="readout-note">Composite Simpson estimate: <output id="integral-estimate">≈ 2.2500</output></p>
+          </article>
+        </div>
+      </section>
+
+      <section class="explanation" aria-labelledby="explanation-title">
+        <div><span class="step-tag">THE MATHEMATICAL NOTE</span><h2 id="explanation-title">One curve. Three distinct questions.</h2></div>
+        <div class="explanation-copy">
+          <p><strong>Value:</strong> Where is the curve? <strong>Derivative:</strong> How steep is it at one point? <strong>Integral:</strong> What is the net signed accumulation across an interval?</p>
+          <p>The tangent uses an analytic derivative for these four selected functions. The central difference and Simpson numbers are approximations, <em>not</em> certified error bounds. This is an educational visualization, not a general-purpose symbolic solver.</p>
+        </div>
+      </section>
+
+      <noscript><p class="noscript-notice">JavaScript is off. The default curve is shown, but moving the tangent and calculating values requires JavaScript. You can still read the definitions above.</p></noscript>
+    </main>
+    <footer class="footer"><span>CONTINUUM CALC / FIELD NOTES</span><span>Built to inspect mathematics, not conceal approximations.</span><a href="../README.md">Project overview ↗</a></footer>
+  </div>
+</body>
+</html>
