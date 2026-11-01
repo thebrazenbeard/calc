@@ -140,16 +140,25 @@
       "slug": "measure-theory",
       "family": "calculus-foundations",
       "kind": "analysis",
-      "scope": "Measurable sets, measures, and Lebesgue-style integration foundations.",
-      "status": "documented",
-      "evidence_level": "indexed_only",
+      "scope": "Exact rational finite atomic measures, integrals, densities and conditional expectations on finite partitions.",
+      "status": "implemented",
+      "evidence_level": "example_tested",
       "guide": null,
       "branch": null,
       "source_ids": [
         "S30"
       ],
-      "bindings": [],
-      "test_paths": [],
+      "bindings": [
+        {
+          "module": "calc.measure",
+          "symbols": [
+            "FiniteMeasure"
+          ]
+        }
+      ],
+      "test_paths": [
+        "tests/test_measure.py"
+      ],
       "formal_proof": false
     },
     {
@@ -451,16 +460,27 @@
       "slug": "optimal-control",
       "family": "calculus-dynamics",
       "kind": "analysis",
-      "scope": "Optimization of trajectories constrained by dynamical equations.",
-      "status": "documented",
-      "evidence_level": "indexed_only",
+      "scope": "Exact scalar finite-horizon discrete LQR via Riccati recursion and Bellman optimal feedback.",
+      "status": "implemented",
+      "evidence_level": "example_tested",
       "guide": null,
       "branch": null,
       "source_ids": [
         "S17"
       ],
-      "bindings": [],
-      "test_paths": [],
+      "bindings": [
+        {
+          "module": "calc.control",
+          "symbols": [
+            "ScalarLQR",
+            "solve_scalar_lqr",
+            "optimal_trajectory"
+          ]
+        }
+      ],
+      "test_paths": [
+        "tests/test_control.py"
+      ],
       "formal_proof": false
     },
     {
@@ -1468,16 +1488,26 @@
       "slug": "noncommutative-algebra",
       "family": "algebra-structures",
       "kind": "algebra",
-      "scope": "Associative structures whose multiplication need not commute.",
-      "status": "documented",
-      "evidence_level": "indexed_only",
+      "scope": "Exact bounded free associative word-polynomial algebra and formal derivations over the rationals.",
+      "status": "implemented",
+      "evidence_level": "example_tested",
       "guide": null,
       "branch": null,
       "source_ids": [
         "S16"
       ],
-      "bindings": [],
-      "test_paths": [],
+      "bindings": [
+        {
+          "module": "calc.free_algebra",
+          "symbols": [
+            "FreeAlgebra",
+            "FreePolynomial"
+          ]
+        }
+      ],
+      "test_paths": [
+        "tests/test_free_algebra.py"
+      ],
       "formal_proof": false
     },
     {
@@ -1669,16 +1699,27 @@
       "slug": "operator-algebra",
       "family": "algebra-structures",
       "kind": "algebra",
-      "scope": "Algebras of linear operators with topology or norms.",
-      "status": "documented",
-      "evidence_level": "indexed_only",
+      "scope": "Bounded rational matrix operator products, adjoints, and finite star-algebra closure; no infinite-dimensional theory.",
+      "status": "implemented",
+      "evidence_level": "example_tested",
       "guide": null,
       "branch": null,
       "source_ids": [
         "S14"
       ],
-      "bindings": [],
-      "test_paths": [],
+      "bindings": [
+        {
+          "module": "calc.operator_algebra",
+          "symbols": [
+            "adjoint",
+            "commutator",
+            "star_algebra"
+          ]
+        }
+      ],
+      "test_paths": [
+        "tests/test_operator_algebra.py"
+      ],
       "formal_proof": false
     },
     {
@@ -1782,16 +1823,25 @@
       "slug": "differential-algebra",
       "family": "algebra-structures",
       "kind": "algebra",
-      "scope": "Rings or fields equipped with derivations obeying Leibniz law.",
-      "status": "documented",
-      "evidence_level": "indexed_only",
+      "scope": "Formal rational jet-polynomial derivations with Leibniz and total-derivative rules at bounded order.",
+      "status": "implemented",
+      "evidence_level": "example_tested",
       "guide": null,
       "branch": null,
       "source_ids": [
         "S16"
       ],
-      "bindings": [],
-      "test_paths": [],
+      "bindings": [
+        {
+          "module": "calc.differential_algebra",
+          "symbols": [
+            "JetPolynomial"
+          ]
+        }
+      ],
+      "test_paths": [
+        "tests/test_differential_algebra.py"
+      ],
       "formal_proof": false
     }
   ]

@@ -14,6 +14,7 @@ This record distinguishes **GitHub writes/readbacks** from local tests and CI. I
 | Wave 5 evidence/algorithms `main` | `a6e1787781a2f443766af386cdfd6606cb845070` | GitHub exact-ref readback; remote manifest and Gröbner source readback; 339/339 local tests; wheel import of packaged manifest |
 | Wave 6 specialist methods `main` | `66fe308aa1690266cff2d680bc7071fef3884a79` | GitHub ref/compare exact readback; 24 independent hostile Wave 5 review tests, plus differential forms, discrete, nonsmooth, stochastic conventions and symmetric spectral eigen methods |
 | Wave 7 algebra/PDE methods `main` | `60e2b4823cd56aabd7c1e358b5329e3aa258888b` | GitHub exact-ref readback and Clifford source fetch; 113 focused integration/review tests after defects repaired, and 523 full-suite passes before Wave 8 concurrent edits |
+| Wave 8 structural calculus/algebra `main` | `71be02d54355ade5ddbec103ec29a1413c82fe45` | GitHub exact-head comparison; 19 hostile Wave 8 tests and 13 hostile Wave 7 tests; combined local test suite advanced past 690 passes during subsequent Wave 9 work |
 
 Wave 4 review, including five module-focused independent hostile checks and a research-gap audit, raised the local suite to **261/261 passing tests** after repairs. The new tests cover overflow and precision failures in complex calculus, discrete transforms, PDEs, optimization and formal lambda-term reduction. The exact Wave 4 remote head was read back before subsequent waves were published.
 

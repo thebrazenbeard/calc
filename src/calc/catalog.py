@@ -83,6 +83,8 @@ _IMPLEMENTED = {
     "clifford-algebra", "geometric-algebra",
     "spectral-methods", "umbral", "category-theory", "homological-algebra",
     "tensor-algebra",
+    "measure-theory", "optimal-control", "noncommutative-algebra",
+    "operator-algebra", "differential-algebra",
 }
 
 TOPICS: tuple[Topic, ...] = tuple(

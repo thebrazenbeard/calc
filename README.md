@@ -20,6 +20,7 @@ An open, source-conscious **atlas of calculus and algebra**: a taxonomy of mathe
 - `docs/REVIEW_WAVE6.md` — independent algebraic, stochastic and spectral verification, including repaired edge cases.
 - `docs/REVIEW_WAVE7.md` — independent verification of geometric algebra and numerical PDE modules.
 - `docs/REVIEW_WAVE8.md` — independent verification of spectral/umbral/categorical/homological/tensor modules.
+- `docs/REVIEW_WAVE9.md` — independent verification of finite measure, control and advanced algebra modules.
 
 The CLI shows the subject map without executing arbitrary mathematical expressions:
 
@@ -83,6 +84,11 @@ The Python package is intentionally modular. Each file declares its numerical or
 | `categories` | Finite categories, composition/identity verification, functors, natural transformations |
 | `homology` | Exact rational chain complexes, boundary ranks and Betti-number computations |
 | `tensors` | Fixed-basis rational tensor products, permutations and contractions |
+| `measure` | Exact finite-atom measures, integrals, Radon–Nikodym densities and conditional expectation |
+| `control` | Exact scalar discrete-time finite-horizon LQR and feedback policies |
+| `free_algebra` | Rational noncommutative word polynomials and formal derivations |
+| `operator_algebra` | Rational matrix adjoints, projections and finite star-algebra closure |
+| `differential_algebra` | Rational finite-jet polynomials with formal total derivatives |
 
 For instance, exact algebra and numerical integration can coexist without conflating their guarantees:
 
