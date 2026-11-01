@@ -77,7 +77,14 @@ _IMPLEMENTED = {
     "abstract-algebra", "group-theory", "field-theory", "boolean-algebra",
     "tropical-algebra", "complex-analysis", "integral-transforms",
     "partial-differential-equations", "lambda-calculus", "root-finding",
-    "numerical-optimization",
+    "numerical-optimization", "computational-algebra", "time-scales", "interval",
+    "stratonovich", "nonsmooth", "subdifferential", "exterior-algebra",
+    "distributional", "finite-elements", "finite-volumes", "lie-algebra",
+    "clifford-algebra", "geometric-algebra",
+    "spectral-methods", "umbral", "category-theory", "homological-algebra",
+    "tensor-algebra",
+    "measure-theory", "optimal-control", "noncommutative-algebra",
+    "operator-algebra", "differential-algebra",
 }
 
 TOPICS: tuple[Topic, ...] = tuple(

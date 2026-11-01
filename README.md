@@ -14,12 +14,20 @@ An open, source-conscious **atlas of calculus and algebra**: a taxonomy of mathe
 - `docs/REVIEW.md` — adversarial technical review and known gaps.
 - `docs/BRANCHES.md` — rules and topic-branch manifest.
 - `docs/topics/` — individually researched subject guides and worked examples.
+- `src/calc/topic_manifest.json` — machine-readable scope, tests, source IDs, and formal-proof status for each indexed topic.
+- `docs/EVIDENCE_MODEL.md` — how catalogue labels map to evidence rather than whole-field claims.
+- `docs/REVIEW_WAVE5.md` — hostile numerical review and regression evidence from the subsequent build wave.
+- `docs/REVIEW_WAVE6.md` — independent algebraic, stochastic and spectral verification, including repaired edge cases.
+- `docs/REVIEW_WAVE7.md` — independent verification of geometric algebra and numerical PDE modules.
+- `docs/REVIEW_WAVE8.md` — independent verification of spectral/umbral/categorical/homological/tensor modules.
+- `docs/REVIEW_WAVE9.md` — independent verification of finite measure, control and advanced algebra modules.
 
 The CLI shows the subject map without executing arbitrary mathematical expressions:
 
 ```bash
 PYTHONPATH=src python -m calc topics
 PYTHONPATH=src python -m calc topic fractional
+PYTHONPATH=src python -m calc evidence fractional --json
 PYTHONPATH=src python -m unittest discover -s tests -v
 ```
 
@@ -56,6 +64,31 @@ The Python package is intentionally modular. Each file declares its numerical or
 | `optimization` | Bisection, safeguarded Newton and golden-section search |
 | `transforms` | Direct DFT/IDFT, convolutions and a finite z-transform |
 | `lambda_calc` | Safe capture-avoiding formal lambda-term reduction |
+| `matrix_calc` | Exact Frobenius algebra and selected matrix derivatives |
+| `grobner` | Small exact rational multivariate polynomial ideals and Buchberger reduction |
+| `time_scales` | Finite-grid delta/nabla differences and integrals |
+| `fractional` | Explicit Caputo/Riemann–Liouville power derivatives and bounded GL approximation |
+| `intervals` | Binary64 interval enclosures with outward rounding |
+| `forms` | Exact rational exterior forms, wedge products, Euclidean Hodge stars |
+| `nonsmooth` | Exact scalar convex subgradients and proximal examples |
+| `discrete` | Rational finite differences, summation by parts and power sums |
+| `stochastic_conventions` | Itô–Stratonovich drift conversion and finite-grid Stratonovich Heun |
+| `spectral` | Symmetric Jacobi eigendecomposition and residual diagnostics; not a PDE spectral solver |
+| `lie` | Exact matrix commutators, Jacobi identity and small Lie subalgebra structure constants |
+| `clifford` | Exact rational multivectors for signed diagonal Clifford/geometric algebras |
+| `distributions` | Compact rational step functions, Dirac jump derivatives and weak pairings |
+| `fem` | Exact-rational 1D piecewise-linear Poisson finite-element assembly and solution |
+| `finite_volumes` | Conservative 1D periodic upwind advection with CFL checks |
+| `collocation` | Chebyshev–Lobatto interpolation and nodal polynomial differentiation |
+| `umbral` | Exact falling-factorial difference operators, Stirling numbers and Newton interpolation |
+| `categories` | Finite categories, composition/identity verification, functors, natural transformations |
+| `homology` | Exact rational chain complexes, boundary ranks and Betti-number computations |
+| `tensors` | Fixed-basis rational tensor products, permutations and contractions |
+| `measure` | Exact finite-atom measures, integrals, Radon–Nikodym densities and conditional expectation |
+| `control` | Exact scalar discrete-time finite-horizon LQR and feedback policies |
+| `free_algebra` | Rational noncommutative word polynomials and formal derivations |
+| `operator_algebra` | Rational matrix adjoints, projections and finite star-algebra closure |
+| `differential_algebra` | Rational finite-jet polynomials with formal total derivatives |
 
 For instance, exact algebra and numerical integration can coexist without conflating their guarantees:
 
