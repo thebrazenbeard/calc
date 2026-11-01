@@ -40,6 +40,7 @@ _DATA: dict[str, tuple[str, ...]] = {
         "numerical-differentiation", "numerical-integration", "spectral-methods",
         "finite-elements", "finite-volumes", "integral-transforms",
         "symbolic-calculus", "lambda-calculus", "relational-calculus",
+        "root-finding", "numerical-optimization",
     ),
     "algebra-foundations": (
         "elementary-algebra", "polynomial", "linear-algebra", "matrix",
@@ -74,7 +75,9 @@ _IMPLEMENTED = {
     "differential-geometry", "differential-forms", "calculus-of-variations",
     "stochastic", "ito", "automatic-differentiation", "symbolic-calculus",
     "abstract-algebra", "group-theory", "field-theory", "boolean-algebra",
-    "tropical-algebra",
+    "tropical-algebra", "complex-analysis", "integral-transforms",
+    "partial-differential-equations", "lambda-calculus", "root-finding",
+    "numerical-optimization",
 }
 
 TOPICS: tuple[Topic, ...] = tuple(
