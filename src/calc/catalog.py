@@ -77,7 +77,7 @@ _IMPLEMENTED = {
     "abstract-algebra", "group-theory", "field-theory", "boolean-algebra",
     "tropical-algebra", "complex-analysis", "integral-transforms",
     "partial-differential-equations", "lambda-calculus", "root-finding",
-    "numerical-optimization",
+    "numerical-optimization", "computational-algebra", "time-scales", "interval",
 }
 
 TOPICS: tuple[Topic, ...] = tuple(

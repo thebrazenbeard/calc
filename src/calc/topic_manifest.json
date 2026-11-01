@@ -1,0 +1,1593 @@
+{
+  "schema_version": 1,
+  "catalog_base_commit": "c4df9e25ce23ef553b988f4b156c0e097b5065f1",
+  "status_semantics": "implemented = selected tested operations, NOT comprehensive implementation of field",
+  "source_semantics": "source ID identifies linked reference, not independent proof or copying license",
+  "branch_semantics": "guide branch planned or verified separately; this manifest does not probe remote refs",
+  "topics": [
+    {
+      "slug": "limits",
+      "family": "calculus-foundations",
+      "kind": "analysis",
+      "scope": "Limits of real-valued functions through approach and epsilon-delta conditions.",
+      "status": "documented",
+      "evidence_level": "indexed_only",
+      "guide": null,
+      "branch": null,
+      "source_ids": [
+        "S01"
+      ],
+      "bindings": [],
+      "test_paths": [],
+      "formal_proof": false
+    },
+    {
+      "slug": "continuity",
+      "family": "calculus-foundations",
+      "kind": "analysis",
+      "scope": "Continuity of scalar functions at points and over domains.",
+      "status": "documented",
+      "evidence_level": "indexed_only",
+      "guide": null,
+      "branch": null,
+      "source_ids": [
+        "S01"
+      ],
+      "bindings": [],
+      "test_paths": [],
+      "formal_proof": false
+    },
+    {
+      "slug": "differential",
+      "family": "calculus-foundations",
+      "kind": "analysis",
+      "scope": "Approximate single-variable ordinary derivatives of real functions.",
+      "status": "implemented",
+      "evidence_level": "example_tested",
+      "guide": "docs/topics/differential.md",
+      "branch": "topic/differential",
+      "source_ids": [
+        "S01"
+      ],
+      "bindings": [
+        {
+          "module": "calc.differential",
+          "symbols": [
+            "derivative"
+          ]
+        }
+      ],
+      "test_paths": [
+        "tests/test_differential.py"
+      ],
+      "formal_proof": false
+    },
+    {
+      "slug": "integral",
+      "family": "calculus-foundations",
+      "kind": "analysis",
+      "scope": "Accumulation and Riemann-type definite integration, not a general symbolic integrator.",
+      "status": "documented",
+      "evidence_level": "indexed_only",
+      "guide": "docs/topics/integral.md",
+      "branch": "topic/integral",
+      "source_ids": [
+        "S01"
+      ],
+      "bindings": [],
+      "test_paths": [],
+      "formal_proof": false
+    },
+    {
+      "slug": "real-analysis",
+      "family": "calculus-foundations",
+      "kind": "analysis",
+      "scope": "Rigorous real limits, convergence, continuity, and measure-theoretic extensions.",
+      "status": "documented",
+      "evidence_level": "indexed_only",
+      "guide": null,
+      "branch": null,
+      "source_ids": [
+        "S30"
+      ],
+      "bindings": [],
+      "test_paths": [],
+      "formal_proof": false
+    },
+    {
+      "slug": "complex-analysis",
+      "family": "calculus-foundations",
+      "kind": "analysis",
+      "scope": "Numerical complex derivatives, Cauchy-Riemann diagnostics, and contour integrals.",
+      "status": "implemented",
+      "evidence_level": "example_tested",
+      "guide": "docs/topics/complex-analysis.md",
+      "branch": "topic/complex-analysis",
+      "source_ids": [
+        "S23"
+      ],
+      "bindings": [
+        {
+          "module": "calc.complex_calc",
+          "symbols": [
+            "complex_derivative",
+            "contour_integral"
+          ]
+        }
+      ],
+      "test_paths": [
+        "tests/test_complex_calc.py"
+      ],
+      "formal_proof": false
+    },
+    {
+      "slug": "asymptotic-analysis",
+      "family": "calculus-foundations",
+      "kind": "analysis",
+      "scope": "Behavior of functions and expansions in limiting regimes.",
+      "status": "documented",
+      "evidence_level": "indexed_only",
+      "guide": null,
+      "branch": null,
+      "source_ids": [
+        "S11"
+      ],
+      "bindings": [],
+      "test_paths": [],
+      "formal_proof": false
+    },
+    {
+      "slug": "measure-theory",
+      "family": "calculus-foundations",
+      "kind": "analysis",
+      "scope": "Measurable sets, measures, and Lebesgue-style integration foundations.",
+      "status": "documented",
+      "evidence_level": "indexed_only",
+      "guide": null,
+      "branch": null,
+      "source_ids": [
+        "S30"
+      ],
+      "bindings": [],
+      "test_paths": [],
+      "formal_proof": false
+    },
+    {
+      "slug": "multivariable",
+      "family": "calculus-multivariable",
+      "kind": "analysis",
+      "scope": "Finite-difference partial derivatives, gradients, Jacobians, and Hessians.",
+      "status": "implemented",
+      "evidence_level": "example_tested",
+      "guide": "docs/topics/multivariable.md",
+      "branch": "topic/multivariable",
+      "source_ids": [
+        "S02",
+        "S05"
+      ],
+      "bindings": [
+        {
+          "module": "calc.differential",
+          "symbols": [
+            "gradient",
+            "jacobian",
+            "hessian"
+          ]
+        }
+      ],
+      "test_paths": [
+        "tests/test_differential.py"
+      ],
+      "formal_proof": false
+    },
+    {
+      "slug": "vector",
+      "family": "calculus-multivariable",
+      "kind": "analysis",
+      "scope": "Divergence, curl, Laplacian, and vector-field derivative operators.",
+      "status": "implemented",
+      "evidence_level": "example_tested",
+      "guide": "docs/topics/vector.md",
+      "branch": "topic/vector",
+      "source_ids": [
+        "S02"
+      ],
+      "bindings": [
+        {
+          "module": "calc.differential",
+          "symbols": [
+            "divergence",
+            "curl",
+            "laplacian"
+          ]
+        }
+      ],
+      "test_paths": [
+        "tests/test_differential.py"
+      ],
+      "formal_proof": false
+    },
+    {
+      "slug": "tensor",
+      "family": "calculus-multivariable",
+      "kind": "analysis",
+      "scope": "Tensor coordinate rules, contractions, and higher-rank derivatives.",
+      "status": "documented",
+      "evidence_level": "indexed_only",
+      "guide": null,
+      "branch": null,
+      "source_ids": [
+        "S07",
+        "S13"
+      ],
+      "bindings": [],
+      "test_paths": [],
+      "formal_proof": false
+    },
+    {
+      "slug": "differential-geometry",
+      "family": "calculus-multivariable",
+      "kind": "analysis",
+      "scope": "Numerical metrics, coordinate pullbacks, and Levi-Civita connections.",
+      "status": "implemented",
+      "evidence_level": "example_tested",
+      "guide": "docs/topics/differential-geometry.md",
+      "branch": "topic/differential-geometry",
+      "source_ids": [
+        "S07",
+        "S13"
+      ],
+      "bindings": [
+        {
+          "module": "calc.geometry",
+          "symbols": [
+            "metric_inner",
+            "christoffel_symbols"
+          ]
+        }
+      ],
+      "test_paths": [
+        "tests/test_geometry.py"
+      ],
+      "formal_proof": false
+    },
+    {
+      "slug": "differential-forms",
+      "family": "calculus-multivariable",
+      "kind": "analysis",
+      "scope": "Exterior derivatives of smooth zero- and one-forms in coordinates.",
+      "status": "implemented",
+      "evidence_level": "example_tested",
+      "guide": null,
+      "branch": null,
+      "source_ids": [
+        "S07"
+      ],
+      "bindings": [
+        {
+          "module": "calc.geometry",
+          "symbols": [
+            "exterior_derivative_0",
+            "exterior_derivative_1"
+          ]
+        }
+      ],
+      "test_paths": [
+        "tests/test_geometry.py"
+      ],
+      "formal_proof": false
+    },
+    {
+      "slug": "exterior",
+      "family": "calculus-multivariable",
+      "kind": "analysis",
+      "scope": "Antisymmetric wedge product of homogeneous differential forms.",
+      "status": "implemented",
+      "evidence_level": "example_tested",
+      "guide": "docs/topics/exterior.md",
+      "branch": "topic/exterior",
+      "source_ids": [
+        "S07",
+        "S20"
+      ],
+      "bindings": [
+        {
+          "module": "calc.advanced",
+          "symbols": [
+            "wedge"
+          ]
+        }
+      ],
+      "test_paths": [
+        "tests/test_advanced.py"
+      ],
+      "formal_proof": false
+    },
+    {
+      "slug": "manifold",
+      "family": "calculus-multivariable",
+      "kind": "analysis",
+      "scope": "Local charts, tangent spaces, coordinate changes, and smooth maps.",
+      "status": "documented",
+      "evidence_level": "indexed_only",
+      "guide": null,
+      "branch": null,
+      "source_ids": [
+        "S13"
+      ],
+      "bindings": [],
+      "test_paths": [],
+      "formal_proof": false
+    },
+    {
+      "slug": "riemannian",
+      "family": "calculus-multivariable",
+      "kind": "analysis",
+      "scope": "Smooth positive-definite metrics, connections, curvature, and geodesic geometry.",
+      "status": "documented",
+      "evidence_level": "indexed_only",
+      "guide": null,
+      "branch": null,
+      "source_ids": [
+        "S13"
+      ],
+      "bindings": [],
+      "test_paths": [],
+      "formal_proof": false
+    },
+    {
+      "slug": "ordinary-differential-equations",
+      "family": "calculus-dynamics",
+      "kind": "analysis",
+      "scope": "Initial-value evolution with explicit Euler and Runge-Kutta discretization.",
+      "status": "implemented",
+      "evidence_level": "example_tested",
+      "guide": null,
+      "branch": null,
+      "source_ids": [
+        "S06",
+        "S09"
+      ],
+      "bindings": [
+        {
+          "module": "calc.numerical",
+          "symbols": [
+            "euler",
+            "rk4"
+          ]
+        }
+      ],
+      "test_paths": [
+        "tests/test_numerical.py"
+      ],
+      "formal_proof": false
+    },
+    {
+      "slug": "partial-differential-equations",
+      "family": "calculus-dynamics",
+      "kind": "analysis",
+      "scope": "Bounded one-dimensional heat and wave finite-difference schemes.",
+      "status": "implemented",
+      "evidence_level": "example_tested",
+      "guide": null,
+      "branch": null,
+      "source_ids": [
+        "S09"
+      ],
+      "bindings": [
+        {
+          "module": "calc.pde",
+          "symbols": [
+            "heat_1d_dirichlet",
+            "wave_1d_dirichlet"
+          ]
+        }
+      ],
+      "test_paths": [
+        "tests/test_pde.py"
+      ],
+      "formal_proof": false
+    },
+    {
+      "slug": "calculus-of-variations",
+      "family": "calculus-dynamics",
+      "kind": "analysis",
+      "scope": "Numerical Euler-Lagrange residual for selected Lagrangians.",
+      "status": "implemented",
+      "evidence_level": "example_tested",
+      "guide": "docs/topics/calculus-of-variations.md",
+      "branch": "topic/calculus-of-variations",
+      "source_ids": [
+        "S17"
+      ],
+      "bindings": [
+        {
+          "module": "calc.advanced",
+          "symbols": [
+            "euler_lagrange_residual"
+          ]
+        }
+      ],
+      "test_paths": [
+        "tests/test_advanced.py"
+      ],
+      "formal_proof": false
+    },
+    {
+      "slug": "functional",
+      "family": "calculus-dynamics",
+      "kind": "analysis",
+      "scope": "Differentiation and operator calculus on spaces of functions.",
+      "status": "documented",
+      "evidence_level": "indexed_only",
+      "guide": null,
+      "branch": null,
+      "source_ids": [
+        "S14"
+      ],
+      "bindings": [],
+      "test_paths": [],
+      "formal_proof": false
+    },
+    {
+      "slug": "optimal-control",
+      "family": "calculus-dynamics",
+      "kind": "analysis",
+      "scope": "Optimization of trajectories constrained by dynamical equations.",
+      "status": "documented",
+      "evidence_level": "indexed_only",
+      "guide": null,
+      "branch": null,
+      "source_ids": [
+        "S17"
+      ],
+      "bindings": [],
+      "test_paths": [],
+      "formal_proof": false
+    },
+    {
+      "slug": "hamiltonian",
+      "family": "calculus-dynamics",
+      "kind": "analysis",
+      "scope": "Hamiltonian flows, canonical equations, and symplectic dynamics.",
+      "status": "documented",
+      "evidence_level": "indexed_only",
+      "guide": null,
+      "branch": null,
+      "source_ids": [
+        "S13"
+      ],
+      "bindings": [],
+      "test_paths": [],
+      "formal_proof": false
+    },
+    {
+      "slug": "geometric-mechanics",
+      "family": "calculus-dynamics",
+      "kind": "analysis",
+      "scope": "Mechanical systems formulated using geometry and variational structure.",
+      "status": "documented",
+      "evidence_level": "indexed_only",
+      "guide": null,
+      "branch": null,
+      "source_ids": [
+        "S13"
+      ],
+      "bindings": [],
+      "test_paths": [],
+      "formal_proof": false
+    },
+    {
+      "slug": "distributional",
+      "family": "calculus-dynamics",
+      "kind": "analysis",
+      "scope": "Weak derivatives and generalized functions acting on smooth tests.",
+      "status": "documented",
+      "evidence_level": "indexed_only",
+      "guide": null,
+      "branch": null,
+      "source_ids": [
+        "S30"
+      ],
+      "bindings": [],
+      "test_paths": [],
+      "formal_proof": false
+    },
+    {
+      "slug": "fractional",
+      "family": "calculus-generalizations",
+      "kind": "analysis",
+      "scope": "Riemann-Liouville fractional integral of power functions only.",
+      "status": "implemented",
+      "evidence_level": "example_tested",
+      "guide": "docs/topics/fractional.md",
+      "branch": "topic/fractional",
+      "source_ids": [
+        "S10"
+      ],
+      "bindings": [
+        {
+          "module": "calc.advanced",
+          "symbols": [
+            "riemann_liouville_power_integral"
+          ]
+        }
+      ],
+      "test_paths": [
+        "tests/test_advanced.py"
+      ],
+      "formal_proof": false
+    },
+    {
+      "slug": "stochastic",
+      "family": "calculus-generalizations",
+      "kind": "analysis",
+      "scope": "Seeded Wiener increments and educational stochastic path simulation.",
+      "status": "implemented",
+      "evidence_level": "example_tested",
+      "guide": "docs/topics/stochastic.md",
+      "branch": "topic/stochastic",
+      "source_ids": [
+        "S24"
+      ],
+      "bindings": [
+        {
+          "module": "calc.stochastic",
+          "symbols": [
+            "brownian_path",
+            "quadratic_variation"
+          ]
+        }
+      ],
+      "test_paths": [
+        "tests/test_stochastic.py"
+      ],
+      "formal_proof": false
+    },
+    {
+      "slug": "ito",
+      "family": "calculus-generalizations",
+      "kind": "analysis",
+      "scope": "Euler-Maruyama discretization of scalar Ito stochastic differential equations.",
+      "status": "implemented",
+      "evidence_level": "example_tested",
+      "guide": null,
+      "branch": null,
+      "source_ids": [
+        "S24"
+      ],
+      "bindings": [
+        {
+          "module": "calc.stochastic",
+          "symbols": [
+            "euler_maruyama",
+            "geometric_brownian_terminal"
+          ]
+        }
+      ],
+      "test_paths": [
+        "tests/test_stochastic.py"
+      ],
+      "formal_proof": false
+    },
+    {
+      "slug": "stratonovich",
+      "family": "calculus-generalizations",
+      "kind": "analysis",
+      "scope": "Stratonovich stochastic integration and its chain-rule conventions.",
+      "status": "documented",
+      "evidence_level": "indexed_only",
+      "guide": null,
+      "branch": null,
+      "source_ids": [
+        "S24"
+      ],
+      "bindings": [],
+      "test_paths": [],
+      "formal_proof": false
+    },
+    {
+      "slug": "malliavin",
+      "family": "calculus-generalizations",
+      "kind": "analysis",
+      "scope": "Differentiability of Gaussian functionals and stochastic Sobolev operators.",
+      "status": "documented",
+      "evidence_level": "indexed_only",
+      "guide": null,
+      "branch": null,
+      "source_ids": [
+        "S15",
+        "S24"
+      ],
+      "bindings": [],
+      "test_paths": [],
+      "formal_proof": false
+    },
+    {
+      "slug": "discrete",
+      "family": "calculus-generalizations",
+      "kind": "analysis",
+      "scope": "Forward differences and discrete change over sampled domains.",
+      "status": "implemented",
+      "evidence_level": "example_tested",
+      "guide": "docs/topics/discrete.md",
+      "branch": "topic/discrete",
+      "source_ids": [
+        "S08"
+      ],
+      "bindings": [
+        {
+          "module": "calc.advanced",
+          "symbols": [
+            "finite_difference"
+          ]
+        }
+      ],
+      "test_paths": [
+        "tests/test_advanced.py"
+      ],
+      "formal_proof": false
+    },
+    {
+      "slug": "finite-difference",
+      "family": "calculus-generalizations",
+      "kind": "analysis",
+      "scope": "Higher-order forward differences and numerical derivative stencils.",
+      "status": "implemented",
+      "evidence_level": "example_tested",
+      "guide": null,
+      "branch": null,
+      "source_ids": [
+        "S08"
+      ],
+      "bindings": [
+        {
+          "module": "calc.advanced",
+          "symbols": [
+            "finite_difference"
+          ]
+        }
+      ],
+      "test_paths": [
+        "tests/test_advanced.py"
+      ],
+      "formal_proof": false
+    },
+    {
+      "slug": "q-calculus",
+      "family": "calculus-generalizations",
+      "kind": "analysis",
+      "scope": "Jackson q-derivative for scalar functions at declared q and x.",
+      "status": "implemented",
+      "evidence_level": "example_tested",
+      "guide": "docs/topics/q-calculus.md",
+      "branch": "topic/q-calculus",
+      "source_ids": [
+        "S19"
+      ],
+      "bindings": [
+        {
+          "module": "calc.advanced",
+          "symbols": [
+            "q_derivative"
+          ]
+        }
+      ],
+      "test_paths": [
+        "tests/test_advanced.py"
+      ],
+      "formal_proof": false
+    },
+    {
+      "slug": "time-scales",
+      "family": "calculus-generalizations",
+      "kind": "analysis",
+      "scope": "Finite isolated time scales: forward/backward jump, graininess, delta/nabla differences and sums; continuous/accumulation cases remain unimplemented.",
+      "status": "implemented",
+      "evidence_level": "example_tested",
+      "guide": "docs/topics/time-scales.md",
+      "branch": "topic/time-scales",
+      "source_ids": [
+        "S19"
+      ],
+      "bindings": [
+        {
+          "module": "calc.time_scales",
+          "symbols": ["FiniteTimeScale"]
+        }
+      ],
+      "test_paths": ["tests/test_time_scales.py"],
+      "formal_proof": false
+    },
+    {
+      "slug": "umbral",
+      "family": "calculus-generalizations",
+      "kind": "analysis",
+      "scope": "Shift-invariant delta operators and polynomial sequence calculus.",
+      "status": "documented",
+      "evidence_level": "indexed_only",
+      "guide": null,
+      "branch": null,
+      "source_ids": [
+        "S21"
+      ],
+      "bindings": [],
+      "test_paths": [],
+      "formal_proof": false
+    },
+    {
+      "slug": "nonstandard-analysis",
+      "family": "calculus-generalizations",
+      "kind": "analysis",
+      "scope": "Calculus founded on hyperreal infinitesimals and transfer principles.",
+      "status": "documented",
+      "evidence_level": "indexed_only",
+      "guide": null,
+      "branch": null,
+      "source_ids": [
+        "S22"
+      ],
+      "bindings": [],
+      "test_paths": [],
+      "formal_proof": false
+    },
+    {
+      "slug": "constructive-analysis",
+      "family": "calculus-generalizations",
+      "kind": "analysis",
+      "scope": "Computably witnessed real analysis under constructive logic.",
+      "status": "documented",
+      "evidence_level": "indexed_only",
+      "guide": null,
+      "branch": null,
+      "source_ids": [
+        "S22"
+      ],
+      "bindings": [],
+      "test_paths": [],
+      "formal_proof": false
+    },
+    {
+      "slug": "interval",
+      "family": "calculus-generalizations",
+      "kind": "analysis",
+      "scope": "Binary64 interval enclosure for basic arithmetic using exact rational intermediates and directed outward rounding; no transcendental certification.",
+      "status": "implemented",
+      "evidence_level": "example_tested",
+      "guide": null,
+      "branch": null,
+      "source_ids": [
+        "S14"
+      ],
+      "bindings": [
+        {
+          "module": "calc.intervals",
+          "symbols": ["Interval"]
+        }
+      ],
+      "test_paths": ["tests/test_intervals.py"],
+      "formal_proof": false
+    },
+    {
+      "slug": "automatic-differentiation",
+      "family": "calculus-generalizations",
+      "kind": "analysis",
+      "scope": "Forward dual-number propagation through supported scalar operations.",
+      "status": "implemented",
+      "evidence_level": "example_tested",
+      "guide": null,
+      "branch": null,
+      "source_ids": [
+        "S12"
+      ],
+      "bindings": [
+        {
+          "module": "calc.autodiff",
+          "symbols": [
+            "derivative",
+            "gradient",
+            "jacobian"
+          ]
+        }
+      ],
+      "test_paths": [
+        "tests/test_autodiff.py"
+      ],
+      "formal_proof": false
+    },
+    {
+      "slug": "nonsmooth",
+      "family": "calculus-generalizations",
+      "kind": "analysis",
+      "scope": "Generalized derivatives of locally Lipschitz nonsmooth functions.",
+      "status": "documented",
+      "evidence_level": "indexed_only",
+      "guide": null,
+      "branch": null,
+      "source_ids": [
+        "S18"
+      ],
+      "bindings": [],
+      "test_paths": [],
+      "formal_proof": false
+    },
+    {
+      "slug": "subdifferential",
+      "family": "calculus-generalizations",
+      "kind": "analysis",
+      "scope": "Convex and Clarke subgradients where ordinary gradients do not exist.",
+      "status": "documented",
+      "evidence_level": "indexed_only",
+      "guide": null,
+      "branch": null,
+      "source_ids": [
+        "S18"
+      ],
+      "bindings": [],
+      "test_paths": [],
+      "formal_proof": false
+    },
+    {
+      "slug": "numerical-differentiation",
+      "family": "calculus-computation",
+      "kind": "computation",
+      "scope": "Finite-difference estimates with explicit steps and truncation limits.",
+      "status": "implemented",
+      "evidence_level": "example_tested",
+      "guide": null,
+      "branch": null,
+      "source_ids": [
+        "S08"
+      ],
+      "bindings": [
+        {
+          "module": "calc.differential",
+          "symbols": [
+            "derivative"
+          ]
+        }
+      ],
+      "test_paths": [
+        "tests/test_differential.py"
+      ],
+      "formal_proof": false
+    },
+    {
+      "slug": "numerical-integration",
+      "family": "calculus-computation",
+      "kind": "computation",
+      "scope": "Trapezoid, Simpson, and heuristic adaptive Simpson quadrature.",
+      "status": "implemented",
+      "evidence_level": "example_tested",
+      "guide": null,
+      "branch": null,
+      "source_ids": [
+        "S06"
+      ],
+      "bindings": [
+        {
+          "module": "calc.numerical",
+          "symbols": [
+            "trapezoid",
+            "simpson",
+            "adaptive_simpson"
+          ]
+        }
+      ],
+      "test_paths": [
+        "tests/test_numerical.py"
+      ],
+      "formal_proof": false
+    },
+    {
+      "slug": "spectral-methods",
+      "family": "calculus-computation",
+      "kind": "computation",
+      "scope": "Orthogonal-basis approximations to differential equations.",
+      "status": "documented",
+      "evidence_level": "indexed_only",
+      "guide": null,
+      "branch": null,
+      "source_ids": [
+        "S09"
+      ],
+      "bindings": [],
+      "test_paths": [],
+      "formal_proof": false
+    },
+    {
+      "slug": "finite-elements",
+      "family": "calculus-computation",
+      "kind": "computation",
+      "scope": "Weak-form discretization over piecewise polynomial elements.",
+      "status": "documented",
+      "evidence_level": "indexed_only",
+      "guide": null,
+      "branch": null,
+      "source_ids": [
+        "S09"
+      ],
+      "bindings": [],
+      "test_paths": [],
+      "formal_proof": false
+    },
+    {
+      "slug": "finite-volumes",
+      "family": "calculus-computation",
+      "kind": "computation",
+      "scope": "Conservative flux discretization over control volumes.",
+      "status": "documented",
+      "evidence_level": "indexed_only",
+      "guide": null,
+      "branch": null,
+      "source_ids": [
+        "S09"
+      ],
+      "bindings": [],
+      "test_paths": [],
+      "formal_proof": false
+    },
+    {
+      "slug": "integral-transforms",
+      "family": "calculus-computation",
+      "kind": "computation",
+      "scope": "Direct finite Fourier and z transforms with discrete convolutions.",
+      "status": "implemented",
+      "evidence_level": "example_tested",
+      "guide": null,
+      "branch": null,
+      "source_ids": [
+        "S11"
+      ],
+      "bindings": [
+        {
+          "module": "calc.transforms",
+          "symbols": [
+            "dft",
+            "idft",
+            "z_transform_finite"
+          ]
+        }
+      ],
+      "test_paths": [
+        "tests/test_transforms.py"
+      ],
+      "formal_proof": false
+    },
+    {
+      "slug": "symbolic-calculus",
+      "family": "calculus-computation",
+      "kind": "computation",
+      "scope": "Restricted safe expression trees and symbolic derivative rules.",
+      "status": "implemented",
+      "evidence_level": "example_tested",
+      "guide": null,
+      "branch": null,
+      "source_ids": [
+        "S03"
+      ],
+      "bindings": [
+        {
+          "module": "calc.symbolic",
+          "symbols": [
+            "parse_expression"
+          ]
+        }
+      ],
+      "test_paths": [
+        "tests/test_symbolic.py"
+      ],
+      "formal_proof": false
+    },
+    {
+      "slug": "lambda-calculus",
+      "family": "calculus-computation",
+      "kind": "formal",
+      "scope": "Pure untyped computational lambda-term parsing and bounded beta reduction.",
+      "status": "implemented",
+      "evidence_level": "example_tested",
+      "guide": "docs/topics/lambda-calculus.md",
+      "branch": "topic/lambda-calculus",
+      "source_ids": [
+        "S25"
+      ],
+      "bindings": [
+        {
+          "module": "calc.lambda_calc",
+          "symbols": [
+            "parse",
+            "normalize"
+          ]
+        }
+      ],
+      "test_paths": [
+        "tests/test_lambda_calc.py"
+      ],
+      "formal_proof": false
+    },
+    {
+      "slug": "relational-calculus",
+      "family": "calculus-computation",
+      "kind": "formal",
+      "scope": "Declarative tuple/domain database predicates, not differentiation.",
+      "status": "documented",
+      "evidence_level": "indexed_only",
+      "guide": null,
+      "branch": null,
+      "source_ids": [
+        "S33"
+      ],
+      "bindings": [],
+      "test_paths": [],
+      "formal_proof": false
+    },
+    {
+      "slug": "root-finding",
+      "family": "calculus-computation",
+      "kind": "computation",
+      "scope": "Bracketed bisection and safeguarded Newton scalar root search.",
+      "status": "implemented",
+      "evidence_level": "example_tested",
+      "guide": null,
+      "branch": null,
+      "source_ids": [
+        "S14"
+      ],
+      "bindings": [
+        {
+          "module": "calc.optimization",
+          "symbols": [
+            "bisection",
+            "safeguarded_newton"
+          ]
+        }
+      ],
+      "test_paths": [
+        "tests/test_optimization.py"
+      ],
+      "formal_proof": false
+    },
+    {
+      "slug": "numerical-optimization",
+      "family": "calculus-computation",
+      "kind": "computation",
+      "scope": "Bounded golden-section minimization for unimodal scalar objectives.",
+      "status": "implemented",
+      "evidence_level": "example_tested",
+      "guide": null,
+      "branch": null,
+      "source_ids": [
+        "S18",
+        "S04"
+      ],
+      "bindings": [
+        {
+          "module": "calc.optimization",
+          "symbols": [
+            "golden_section_minimize"
+          ]
+        }
+      ],
+      "test_paths": [
+        "tests/test_optimization.py"
+      ],
+      "formal_proof": false
+    },
+    {
+      "slug": "elementary-algebra",
+      "family": "algebra-foundations",
+      "kind": "algebra",
+      "scope": "Equations, rational expressions, factoring, and symbolic manipulation basics.",
+      "status": "documented",
+      "evidence_level": "indexed_only",
+      "guide": null,
+      "branch": null,
+      "source_ids": [
+        "S26"
+      ],
+      "bindings": [],
+      "test_paths": [],
+      "formal_proof": false
+    },
+    {
+      "slug": "polynomial",
+      "family": "algebra-foundations",
+      "kind": "algebra",
+      "scope": "Exact univariate rational polynomial arithmetic, division, and differentiation.",
+      "status": "implemented",
+      "evidence_level": "example_tested",
+      "guide": null,
+      "branch": null,
+      "source_ids": [
+        "S16",
+        "S26"
+      ],
+      "bindings": [
+        {
+          "module": "calc.algebra",
+          "symbols": [
+            "Polynomial"
+          ]
+        }
+      ],
+      "test_paths": [
+        "tests/test_algebra.py"
+      ],
+      "formal_proof": false
+    },
+    {
+      "slug": "linear-algebra",
+      "family": "algebra-foundations",
+      "kind": "algebra",
+      "scope": "Exact matrix ranks, determinants, inverses, and linear-system solutions.",
+      "status": "implemented",
+      "evidence_level": "example_tested",
+      "guide": "docs/topics/linear-algebra.md",
+      "branch": "topic/linear-algebra",
+      "source_ids": [
+        "S04",
+        "S26"
+      ],
+      "bindings": [
+        {
+          "module": "calc.algebra",
+          "symbols": [
+            "solve_linear_system",
+            "matrix_rank"
+          ]
+        }
+      ],
+      "test_paths": [
+        "tests/test_algebra.py"
+      ],
+      "formal_proof": false
+    },
+    {
+      "slug": "matrix",
+      "family": "algebra-foundations",
+      "kind": "algebra",
+      "scope": "Exact rational matrix multiplication, transpose, determinant, rank, and trace.",
+      "status": "implemented",
+      "evidence_level": "example_tested",
+      "guide": null,
+      "branch": null,
+      "source_ids": [
+        "S04",
+        "S05"
+      ],
+      "bindings": [
+        {
+          "module": "calc.algebra",
+          "symbols": [
+            "matmul",
+            "determinant"
+          ]
+        }
+      ],
+      "test_paths": [
+        "tests/test_algebra.py"
+      ],
+      "formal_proof": false
+    },
+    {
+      "slug": "boolean-algebra",
+      "family": "algebra-foundations",
+      "kind": "algebra",
+      "scope": "Finite Boolean meet, join, complement, and exclusive-or.",
+      "status": "implemented",
+      "evidence_level": "example_tested",
+      "guide": "docs/topics/boolean-algebra.md",
+      "branch": "topic/boolean-algebra",
+      "source_ids": [
+        "S16"
+      ],
+      "bindings": [
+        {
+          "module": "calc.structures",
+          "symbols": [
+            "boolean_join",
+            "boolean_meet"
+          ]
+        }
+      ],
+      "test_paths": [
+        "tests/test_structures.py"
+      ],
+      "formal_proof": false
+    },
+    {
+      "slug": "abstract-algebra",
+      "family": "algebra-foundations",
+      "kind": "algebra",
+      "scope": "Finite Cayley-table group axioms and selected algebraic structures.",
+      "status": "implemented",
+      "evidence_level": "example_tested",
+      "guide": "docs/topics/abstract-algebra.md",
+      "branch": "topic/abstract-algebra",
+      "source_ids": [
+        "S26"
+      ],
+      "bindings": [
+        {
+          "module": "calc.structures",
+          "symbols": [
+            "FiniteGroup"
+          ]
+        }
+      ],
+      "test_paths": [
+        "tests/test_structures.py"
+      ],
+      "formal_proof": false
+    },
+    {
+      "slug": "group-theory",
+      "family": "algebra-foundations",
+      "kind": "algebra",
+      "scope": "Finite groups with associativity, identity, inverse, and generators.",
+      "status": "implemented",
+      "evidence_level": "example_tested",
+      "guide": null,
+      "branch": null,
+      "source_ids": [
+        "S26"
+      ],
+      "bindings": [
+        {
+          "module": "calc.structures",
+          "symbols": [
+            "FiniteGroup"
+          ]
+        }
+      ],
+      "test_paths": [
+        "tests/test_structures.py"
+      ],
+      "formal_proof": false
+    },
+    {
+      "slug": "ring-theory",
+      "family": "algebra-foundations",
+      "kind": "algebra",
+      "scope": "Associative additive and multiplicative structures with distributivity.",
+      "status": "documented",
+      "evidence_level": "indexed_only",
+      "guide": null,
+      "branch": null,
+      "source_ids": [
+        "S26"
+      ],
+      "bindings": [],
+      "test_paths": [],
+      "formal_proof": false
+    },
+    {
+      "slug": "field-theory",
+      "family": "algebra-foundations",
+      "kind": "algebra",
+      "scope": "Prime finite-field arithmetic with modular multiplicative inverses.",
+      "status": "implemented",
+      "evidence_level": "example_tested",
+      "guide": null,
+      "branch": null,
+      "source_ids": [
+        "S26"
+      ],
+      "bindings": [
+        {
+          "module": "calc.structures",
+          "symbols": [
+            "PrimeField"
+          ]
+        }
+      ],
+      "test_paths": [
+        "tests/test_structures.py"
+      ],
+      "formal_proof": false
+    },
+    {
+      "slug": "module-theory",
+      "family": "algebra-foundations",
+      "kind": "algebra",
+      "scope": "Abelian groups acted on by a ring with distributive scalar multiplication.",
+      "status": "documented",
+      "evidence_level": "indexed_only",
+      "guide": null,
+      "branch": null,
+      "source_ids": [
+        "S26"
+      ],
+      "bindings": [],
+      "test_paths": [],
+      "formal_proof": false
+    },
+    {
+      "slug": "universal-algebra",
+      "family": "algebra-foundations",
+      "kind": "algebra",
+      "scope": "Abstract operations, identities, and homomorphisms across signatures.",
+      "status": "documented",
+      "evidence_level": "indexed_only",
+      "guide": null,
+      "branch": null,
+      "source_ids": [
+        "S26"
+      ],
+      "bindings": [],
+      "test_paths": [],
+      "formal_proof": false
+    },
+    {
+      "slug": "commutative-algebra",
+      "family": "algebra-structures",
+      "kind": "algebra",
+      "scope": "Commutative rings, ideals, localization, and polynomial ideals.",
+      "status": "documented",
+      "evidence_level": "indexed_only",
+      "guide": null,
+      "branch": null,
+      "source_ids": [
+        "S28"
+      ],
+      "bindings": [],
+      "test_paths": [],
+      "formal_proof": false
+    },
+    {
+      "slug": "noncommutative-algebra",
+      "family": "algebra-structures",
+      "kind": "algebra",
+      "scope": "Associative structures whose multiplication need not commute.",
+      "status": "documented",
+      "evidence_level": "indexed_only",
+      "guide": null,
+      "branch": null,
+      "source_ids": [
+        "S16"
+      ],
+      "bindings": [],
+      "test_paths": [],
+      "formal_proof": false
+    },
+    {
+      "slug": "lie-algebra",
+      "family": "algebra-structures",
+      "kind": "algebra",
+      "scope": "Bilinear Lie brackets satisfying alternation and Jacobi identity.",
+      "status": "documented",
+      "evidence_level": "indexed_only",
+      "guide": "docs/topics/lie-algebra.md",
+      "branch": "topic/lie-algebra",
+      "source_ids": [
+        "S27"
+      ],
+      "bindings": [],
+      "test_paths": [],
+      "formal_proof": false
+    },
+    {
+      "slug": "tensor-algebra",
+      "family": "algebra-structures",
+      "kind": "algebra",
+      "scope": "Associative algebra of tensor powers and graded multiplication.",
+      "status": "documented",
+      "evidence_level": "indexed_only",
+      "guide": null,
+      "branch": null,
+      "source_ids": [
+        "S16"
+      ],
+      "bindings": [],
+      "test_paths": [],
+      "formal_proof": false
+    },
+    {
+      "slug": "exterior-algebra",
+      "family": "algebra-structures",
+      "kind": "algebra",
+      "scope": "Alternating multilinear exterior algebra and wedge identities.",
+      "status": "documented",
+      "evidence_level": "indexed_only",
+      "guide": null,
+      "branch": null,
+      "source_ids": [
+        "S20"
+      ],
+      "bindings": [],
+      "test_paths": [],
+      "formal_proof": false
+    },
+    {
+      "slug": "clifford-algebra",
+      "family": "algebra-structures",
+      "kind": "algebra",
+      "scope": "Geometric products constrained by a quadratic form.",
+      "status": "documented",
+      "evidence_level": "indexed_only",
+      "guide": null,
+      "branch": null,
+      "source_ids": [
+        "S20"
+      ],
+      "bindings": [],
+      "test_paths": [],
+      "formal_proof": false
+    },
+    {
+      "slug": "geometric-algebra",
+      "family": "algebra-structures",
+      "kind": "algebra",
+      "scope": "Multivector products and grade decomposition for metric geometry.",
+      "status": "documented",
+      "evidence_level": "indexed_only",
+      "guide": null,
+      "branch": null,
+      "source_ids": [
+        "S20"
+      ],
+      "bindings": [],
+      "test_paths": [],
+      "formal_proof": false
+    },
+    {
+      "slug": "homological-algebra",
+      "family": "algebra-structures",
+      "kind": "algebra",
+      "scope": "Chain complexes, kernels, exactness, and homology groups.",
+      "status": "documented",
+      "evidence_level": "indexed_only",
+      "guide": null,
+      "branch": null,
+      "source_ids": [
+        "S29"
+      ],
+      "bindings": [],
+      "test_paths": [],
+      "formal_proof": false
+    },
+    {
+      "slug": "tropical-algebra",
+      "family": "algebra-structures",
+      "kind": "algebra",
+      "scope": "Min-plus semiring addition and multiplication on finite scalars.",
+      "status": "implemented",
+      "evidence_level": "example_tested",
+      "guide": "docs/topics/tropical-algebra.md",
+      "branch": "topic/tropical-algebra",
+      "source_ids": [
+        "S14"
+      ],
+      "bindings": [
+        {
+          "module": "calc.structures",
+          "symbols": [
+            "tropical_add",
+            "tropical_multiply"
+          ]
+        }
+      ],
+      "test_paths": [
+        "tests/test_structures.py"
+      ],
+      "formal_proof": false
+    },
+    {
+      "slug": "operator-algebra",
+      "family": "algebra-structures",
+      "kind": "algebra",
+      "scope": "Algebras of linear operators with topology or norms.",
+      "status": "documented",
+      "evidence_level": "indexed_only",
+      "guide": null,
+      "branch": null,
+      "source_ids": [
+        "S14"
+      ],
+      "bindings": [],
+      "test_paths": [],
+      "formal_proof": false
+    },
+    {
+      "slug": "representation-theory",
+      "family": "algebra-structures",
+      "kind": "algebra",
+      "scope": "Algebraic actions represented as linear transformations.",
+      "status": "documented",
+      "evidence_level": "indexed_only",
+      "guide": null,
+      "branch": null,
+      "source_ids": [
+        "S27"
+      ],
+      "bindings": [],
+      "test_paths": [],
+      "formal_proof": false
+    },
+    {
+      "slug": "category-theory",
+      "family": "algebra-structures",
+      "kind": "algebra",
+      "scope": "Objects, morphisms, composition, and categorical universal properties.",
+      "status": "documented",
+      "evidence_level": "indexed_only",
+      "guide": null,
+      "branch": null,
+      "source_ids": [
+        "S13"
+      ],
+      "bindings": [],
+      "test_paths": [],
+      "formal_proof": false
+    },
+    {
+      "slug": "algebraic-geometry",
+      "family": "algebra-structures",
+      "kind": "algebra",
+      "scope": "Polynomial varieties, ideals, and their geometric correspondences.",
+      "status": "documented",
+      "evidence_level": "indexed_only",
+      "guide": null,
+      "branch": null,
+      "source_ids": [
+        "S28"
+      ],
+      "bindings": [],
+      "test_paths": [],
+      "formal_proof": false
+    },
+    {
+      "slug": "computational-algebra",
+      "family": "algebra-structures",
+      "kind": "algebra",
+      "scope": "Small rational multivariate polynomial ideals, lex/grlex reductions, S-polynomials and bounded Buchberger Groebner bases; no general CAS.",
+      "status": "implemented",
+      "evidence_level": "example_tested",
+      "guide": null,
+      "branch": null,
+      "source_ids": [
+        "S28"
+      ],
+      "bindings": [
+        {
+          "module": "calc.grobner",
+          "symbols": ["MultiPolynomial", "normal_form", "grobner_basis"]
+        }
+      ],
+      "test_paths": ["tests/test_grobner.py"],
+      "formal_proof": false
+    },
+    {
+      "slug": "hopf-algebra",
+      "family": "algebra-structures",
+      "kind": "algebra",
+      "scope": "Compatible algebra, coalgebra, antipode, and bialgebra axioms.",
+      "status": "documented",
+      "evidence_level": "indexed_only",
+      "guide": null,
+      "branch": null,
+      "source_ids": [
+        "S16"
+      ],
+      "bindings": [],
+      "test_paths": [],
+      "formal_proof": false
+    },
+    {
+      "slug": "differential-algebra",
+      "family": "algebra-structures",
+      "kind": "algebra",
+      "scope": "Rings or fields equipped with derivations obeying Leibniz law.",
+      "status": "documented",
+      "evidence_level": "indexed_only",
+      "guide": null,
+      "branch": null,
+      "source_ids": [
+        "S16"
+      ],
+      "bindings": [],
+      "test_paths": [],
+      "formal_proof": false
+    }
+  ]
+}

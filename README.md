@@ -14,12 +14,15 @@ An open, source-conscious **atlas of calculus and algebra**: a taxonomy of mathe
 - `docs/REVIEW.md` — adversarial technical review and known gaps.
 - `docs/BRANCHES.md` — rules and topic-branch manifest.
 - `docs/topics/` — individually researched subject guides and worked examples.
+- `src/calc/topic_manifest.json` — machine-readable scope, tests, source IDs, and formal-proof status for each indexed topic.
+- `docs/EVIDENCE_MODEL.md` — how catalogue labels map to evidence rather than whole-field claims.
 
 The CLI shows the subject map without executing arbitrary mathematical expressions:
 
 ```bash
 PYTHONPATH=src python -m calc topics
 PYTHONPATH=src python -m calc topic fractional
+PYTHONPATH=src python -m calc evidence fractional --json
 PYTHONPATH=src python -m unittest discover -s tests -v
 ```
 
@@ -56,6 +59,11 @@ The Python package is intentionally modular. Each file declares its numerical or
 | `optimization` | Bisection, safeguarded Newton and golden-section search |
 | `transforms` | Direct DFT/IDFT, convolutions and a finite z-transform |
 | `lambda_calc` | Safe capture-avoiding formal lambda-term reduction |
+| `matrix_calc` | Exact Frobenius algebra and selected matrix derivatives |
+| `grobner` | Small exact rational multivariate polynomial ideals and Buchberger reduction |
+| `time_scales` | Finite-grid delta/nabla differences and integrals |
+| `fractional` | Explicit Caputo/Riemann–Liouville power derivatives and bounded GL approximation |
+| `intervals` | Binary64 interval enclosures with outward rounding |
 
 For instance, exact algebra and numerical integration can coexist without conflating their guarantees:
 
