@@ -13,6 +13,9 @@ from collections.abc import Mapping
 from dataclasses import dataclass, field
 from fractions import Fraction
 
+_MAX_AMBIENT_DIMENSION = 16
+_MAX_SPARSE_TERMS = 1 << _MAX_AMBIENT_DIMENSION
+
 
 def _exact_scalar(value: int | Fraction) -> Fraction:
     """Convert an integer/rational, rejecting inexact floating-point inputs."""
@@ -59,8 +62,8 @@ class Form:
     ) -> None:
         if isinstance(dimension, bool) or not isinstance(dimension, int):
             raise TypeError("dimension must be an integer")
-        if dimension < 1:
-            raise ValueError("dimension must be positive")
+        if not 1 <= dimension <= _MAX_AMBIENT_DIMENSION:
+            raise ValueError(f"dimension must be between 1 and {_MAX_AMBIENT_DIMENSION}")
         if isinstance(degree, bool) or not isinstance(degree, int):
             raise TypeError("degree must be an integer")
         if degree < 0:
@@ -69,6 +72,8 @@ class Form:
             coefficients = {}
         if not isinstance(coefficients, Mapping):
             raise TypeError("coefficients must be a mapping of index tuples to rationals")
+        if len(coefficients) > _MAX_SPARSE_TERMS:
+            raise ValueError("form exceeds sparse term limit")
         terms: list[tuple[tuple[int, ...], Fraction]] = []
         for indices, coefficient in coefficients.items():
             _index_tuple(indices, dimension=dimension, degree=degree)

@@ -8,6 +8,7 @@ perform a general singular-value decomposition, or certify exact eigenpairs.
 from __future__ import annotations
 
 import math
+from fractions import Fraction
 from numbers import Integral, Real
 
 
@@ -93,6 +94,13 @@ def jacobi_eigen(
 
     a = _matrix(matrix)
     n = len(a)
+    # A matrix which is already diagonal needs no rotations or global
+    # scaling: scaling 1e-300 by a 1e300 maximum would erase a real
+    # nonzero eigenvalue before the method even starts.
+    if all(a[i][j] == 0.0 for i in range(n) for j in range(n) if i != j):
+        order = sorted(range(n), key=lambda j: a[j][j])
+        return (tuple(a[j][j] for j in order),
+                tuple(tuple(float(i == j) for j in order) for i in range(n)))
     scale = max(abs(entry) for row in a for entry in row)
     vectors = _identity(n)
     if scale == 0.0:
@@ -147,11 +155,11 @@ def rayleigh_quotient(matrix: object, vector: object) -> float:
     avoidable overflow and underflow.  The result is a floating estimate.
     """
     a = _matrix(matrix)
-    v = _vector(vector, len(a), "vector")
-    vscale = max(abs(x) for x in v)
+    original_v = _vector(vector, len(a), "vector")
+    vscale = max(abs(x) for x in original_v)
     if vscale == 0.0:
         raise ValueError("vector must not be zero")
-    v = [x / vscale for x in v]
+    v = [x / vscale for x in original_v]
     ascale = max(abs(x) for row in a for x in row)
     if ascale == 0.0:
         return 0.0
@@ -159,6 +167,18 @@ def rayleigh_quotient(matrix: object, vector: object) -> float:
                                for j in range(len(a))) for i in range(len(a)))
     denominator = sum(x * x for x in v)
     result = (numerator / denominator) * ascale
+    if result == 0.0:
+        # Relative scaling can lose a tiny, but representable, quotient.
+        # Reconstruct exact binary64 inputs on this exceptional path.
+        rational_v = [Fraction.from_float(x) for x in original_v]
+        exact_numerator = sum(
+            (Fraction.from_float(a[i][j]) * rational_v[i] * rational_v[j]
+             for i in range(len(a)) for j in range(len(a))), Fraction(0))
+        exact_denominator = sum((value * value for value in rational_v), Fraction(0))
+        try:
+            result = float(exact_numerator / exact_denominator)
+        except OverflowError as exc:
+            raise ArithmeticError("Rayleigh quotient is not finite") from exc
     if not math.isfinite(result):
         raise ArithmeticError("Rayleigh quotient is not finite")
     return result

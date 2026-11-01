@@ -17,6 +17,7 @@ An open, source-conscious **atlas of calculus and algebra**: a taxonomy of mathe
 - `src/calc/topic_manifest.json` — machine-readable scope, tests, source IDs, and formal-proof status for each indexed topic.
 - `docs/EVIDENCE_MODEL.md` — how catalogue labels map to evidence rather than whole-field claims.
 - `docs/REVIEW_WAVE5.md` — hostile numerical review and regression evidence from the subsequent build wave.
+- `docs/REVIEW_WAVE6.md` — independent algebraic, stochastic and spectral verification, including repaired edge cases.
 
 The CLI shows the subject map without executing arbitrary mathematical expressions:
 
@@ -70,6 +71,11 @@ The Python package is intentionally modular. Each file declares its numerical or
 | `discrete` | Rational finite differences, summation by parts and power sums |
 | `stochastic_conventions` | Itô–Stratonovich drift conversion and finite-grid Stratonovich Heun |
 | `spectral` | Symmetric Jacobi eigendecomposition and residual diagnostics; not a PDE spectral solver |
+| `lie` | Exact matrix commutators, Jacobi identity and small Lie subalgebra structure constants |
+| `clifford` | Exact rational multivectors for signed diagonal Clifford/geometric algebras |
+| `distributions` | Compact rational step functions, Dirac jump derivatives and weak pairings |
+| `fem` | Exact-rational 1D piecewise-linear Poisson finite-element assembly and solution |
+| `finite_volumes` | Conservative 1D periodic upwind advection with CFL checks |
 
 For instance, exact algebra and numerical integration can coexist without conflating their guarantees:
 

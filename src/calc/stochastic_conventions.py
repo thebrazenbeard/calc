@@ -10,6 +10,7 @@ from __future__ import annotations
 import math
 from collections.abc import Callable, Iterable
 from dataclasses import dataclass
+from fractions import Fraction
 from itertools import islice
 
 
@@ -43,11 +44,25 @@ def _coefficients(*values: tuple[str, ScalarCoefficient]) -> None:
             raise TypeError(f"{name} must be callable as {name}(t, y)")
 
 
-def _correction(diffusion: ScalarCoefficient, diffusion_dx: ScalarCoefficient,
-                t: float, y: float) -> float:
+def _converted_drift(drift: float, diffusion: ScalarCoefficient,
+                     diffusion_dx: ScalarCoefficient, t: float, y: float,
+                     sign: int, name: str) -> float:
     b = _real(diffusion(t, y), "diffusion value")
     bx = _real(diffusion_dx(t, y), "diffusion state derivative")
-    return _real(0.5 * b * bx, "Itô-Stratonovich drift correction")
+    correction = 0.5 * b * bx
+    converted = drift + sign * correction
+    if math.isfinite(converted):
+        return converted
+    # The correction, or its addition to the drift, may overflow even when
+    # the full scalar conversion is finite due to cancellation. Reconstruct
+    # exact binary64 inputs only for this exceptional path.
+    exact = (Fraction.from_float(drift) +
+             sign * Fraction.from_float(b) * Fraction.from_float(bx) / 2)
+    try:
+        converted = float(exact)
+    except OverflowError as exc:
+        raise ValueError(f"{name} is outside finite float range") from exc
+    return _real(converted, name)
 
 
 def stratonovich_to_ito_drift(
@@ -68,7 +83,7 @@ def stratonovich_to_ito_drift(
                   ("diffusion", diffusion), ("diffusion_dx", diffusion_dx))
     time, state = _real(t, "time"), _real(y, "state")
     drift = _real(drift_stratonovich(time, state), "Stratonovich drift")
-    return _real(drift + _correction(diffusion, diffusion_dx, time, state), "Itô drift")
+    return _converted_drift(drift, diffusion, diffusion_dx, time, state, 1, "Itô drift")
 
 
 def ito_to_stratonovich_drift(
@@ -83,8 +98,8 @@ def ito_to_stratonovich_drift(
                   ("diffusion_dx", diffusion_dx))
     time, state = _real(t, "time"), _real(y, "state")
     drift = _real(drift_ito(time, state), "Itô drift")
-    return _real(drift - _correction(diffusion, diffusion_dx, time, state),
-                 "Stratonovich drift")
+    return _converted_drift(drift, diffusion, diffusion_dx, time, state,
+                            -1, "Stratonovich drift")
 
 
 def _noise(increments: Iterable[float], steps: int) -> tuple[float, ...]:

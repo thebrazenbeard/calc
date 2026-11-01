@@ -79,6 +79,8 @@ _IMPLEMENTED = {
     "partial-differential-equations", "lambda-calculus", "root-finding",
     "numerical-optimization", "computational-algebra", "time-scales", "interval",
     "stratonovich", "nonsmooth", "subdifferential", "exterior-algebra",
+    "distributional", "finite-elements", "finite-volumes", "lie-algebra",
+    "clifford-algebra", "geometric-algebra",
 }
 
 TOPICS: tuple[Topic, ...] = tuple(

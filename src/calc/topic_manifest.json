@@ -499,16 +499,26 @@
       "slug": "distributional",
       "family": "calculus-dynamics",
       "kind": "analysis",
-      "scope": "Weak derivatives and generalized functions acting on smooth tests.",
-      "status": "documented",
-      "evidence_level": "indexed_only",
+      "scope": "Exact finite-jump weak derivatives as Dirac measures for compactly supported rational step functions.",
+      "status": "implemented",
+      "evidence_level": "example_tested",
       "guide": null,
       "branch": null,
       "source_ids": [
         "S30"
       ],
-      "bindings": [],
-      "test_paths": [],
+      "bindings": [
+        {
+          "module": "calc.distributions",
+          "symbols": [
+            "PiecewiseConstant",
+            "DiracMeasure"
+          ]
+        }
+      ],
+      "test_paths": [
+        "tests/test_distributions.py"
+      ],
       "formal_proof": false
     },
     {
@@ -967,32 +977,53 @@
       "slug": "finite-elements",
       "family": "calculus-computation",
       "kind": "computation",
-      "scope": "Weak-form discretization over piecewise polynomial elements.",
-      "status": "documented",
-      "evidence_level": "indexed_only",
+      "scope": "Exact-rational piecewise-linear Galerkin Poisson solver on a bounded one-dimensional mesh.",
+      "status": "implemented",
+      "evidence_level": "example_tested",
       "guide": null,
       "branch": null,
       "source_ids": [
         "S09"
       ],
-      "bindings": [],
-      "test_paths": [],
+      "bindings": [
+        {
+          "module": "calc.fem",
+          "symbols": [
+            "assemble_poisson_1d",
+            "solve_poisson_1d"
+          ]
+        }
+      ],
+      "test_paths": [
+        "tests/test_fem.py"
+      ],
       "formal_proof": false
     },
     {
       "slug": "finite-volumes",
       "family": "calculus-computation",
       "kind": "computation",
-      "scope": "Conservative flux discretization over control volumes.",
-      "status": "documented",
-      "evidence_level": "indexed_only",
+      "scope": "One-dimensional periodic uniform-grid upwind finite-volume advection for constant velocity.",
+      "status": "implemented",
+      "evidence_level": "example_tested",
       "guide": null,
       "branch": null,
       "source_ids": [
         "S09"
       ],
-      "bindings": [],
-      "test_paths": [],
+      "bindings": [
+        {
+          "module": "calc.finite_volumes",
+          "symbols": [
+            "upwind_fluxes",
+            "upwind_step",
+            "cell_mass"
+          ]
+        }
+      ],
+      "test_paths": [
+        "tests/test_finite_volumes.py"
+      ],
       "formal_proof": false
     },
     {
@@ -1422,16 +1453,27 @@
       "slug": "lie-algebra",
       "family": "algebra-structures",
       "kind": "algebra",
-      "scope": "Bilinear Lie brackets satisfying alternation and Jacobi identity.",
-      "status": "documented",
-      "evidence_level": "indexed_only",
+      "scope": "Exact rational square-matrix commutator Lie brackets, basis coordinates, and small closed Lie subalgebras.",
+      "status": "implemented",
+      "evidence_level": "example_tested",
       "guide": "docs/topics/lie-algebra.md",
       "branch": "topic/lie-algebra",
       "source_ids": [
         "S27"
       ],
-      "bindings": [],
-      "test_paths": [],
+      "bindings": [
+        {
+          "module": "calc.lie",
+          "symbols": [
+            "commutator",
+            "jacobiator",
+            "structure_constants"
+          ]
+        }
+      ],
+      "test_paths": [
+        "tests/test_lie.py"
+      ],
       "formal_proof": false
     },
     {
@@ -1482,32 +1524,52 @@
       "slug": "clifford-algebra",
       "family": "algebra-structures",
       "kind": "algebra",
-      "scope": "Geometric products constrained by a quadratic form.",
-      "status": "documented",
-      "evidence_level": "indexed_only",
+      "scope": "Bounded rational Clifford multivectors under diagonal unit-signature metrics.",
+      "status": "implemented",
+      "evidence_level": "example_tested",
       "guide": null,
       "branch": null,
       "source_ids": [
         "S20"
       ],
-      "bindings": [],
-      "test_paths": [],
+      "bindings": [
+        {
+          "module": "calc.clifford",
+          "symbols": [
+            "CliffordAlgebra",
+            "Multivector"
+          ]
+        }
+      ],
+      "test_paths": [
+        "tests/test_clifford.py"
+      ],
       "formal_proof": false
     },
     {
       "slug": "geometric-algebra",
       "family": "algebra-structures",
       "kind": "algebra",
-      "scope": "Multivector products and grade decomposition for metric geometry.",
-      "status": "documented",
-      "evidence_level": "indexed_only",
+      "scope": "Bounded exact rational multivector operations and grade decomposition for diagonal signed metrics.",
+      "status": "implemented",
+      "evidence_level": "example_tested",
       "guide": null,
       "branch": null,
       "source_ids": [
         "S20"
       ],
-      "bindings": [],
-      "test_paths": [],
+      "bindings": [
+        {
+          "module": "calc.clifford",
+          "symbols": [
+            "CliffordAlgebra",
+            "Multivector"
+          ]
+        }
+      ],
+      "test_paths": [
+        "tests/test_clifford.py"
+      ],
       "formal_proof": false
     },
     {
