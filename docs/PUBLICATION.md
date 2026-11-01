@@ -15,10 +15,11 @@ This record distinguishes **GitHub writes/readbacks** from local tests and CI. I
 | Wave 6 specialist methods `main` | `66fe308aa1690266cff2d680bc7071fef3884a79` | GitHub ref/compare exact readback; 24 independent hostile Wave 5 review tests, plus differential forms, discrete, nonsmooth, stochastic conventions and symmetric spectral eigen methods |
 | Wave 7 algebra/PDE methods `main` | `60e2b4823cd56aabd7c1e358b5329e3aa258888b` | GitHub exact-ref readback and Clifford source fetch; 113 focused integration/review tests after defects repaired, and 523 full-suite passes before Wave 8 concurrent edits |
 | Wave 8 structural calculus/algebra `main` | `71be02d54355ade5ddbec103ec29a1413c82fe45` | GitHub exact-head comparison; 19 hostile Wave 8 tests and 13 hostile Wave 7 tests; combined local test suite advanced past 690 passes during subsequent Wave 9 work |
+| Wave 9 advanced methods `main` | `26a8d9bb839337b2d7671800f52133439820d849` | GitHub exact-head comparison and remote differential-algebra source readback; 757/757 local Python tests, 14 independent hostile Wave 9 tests; offline wheel built and packaged topic manifest import confirmed |
 
 Wave 4 review, including five module-focused independent hostile checks and a research-gap audit, raised the local suite to **261/261 passing tests** after repairs. The new tests cover overflow and precision failures in complex calculus, discrete transforms, PDEs, optimization and formal lambda-term reduction. The exact Wave 4 remote head was read back before subsequent waves were published.
 
-The standard-library tests were executed with Python 3.12 in a local isolated workspace. At the Wave 2 check, GitHub's combined status API returned an empty `statuses` list. That does **not** establish a passing cloud CI run. Branch workflows and test execution on GitHub were not independently read back.
+The standard-library tests were executed with Python 3.12 in a local isolated workspace. At the Wave 2 check, GitHub's combined status API returned an empty `statuses` list. That does **not** establish a passing cloud CI run. Branch workflows and test execution on GitHub were not independently read back. The final Wave 9 wheel was assembled offline from the local source tree; this is packaging verification, **not** a published PyPI release.
 
 ## Curated subject branches
 
