@@ -77,7 +77,10 @@ def _next_state(values: tuple[float, ...], r: float, left: float, right: float) 
         return values
     result = [left]
     for j in range(1, len(values) - 1):
-        value = values[j] + r * (values[j - 1] - 2 * values[j] + values[j + 1])
+        # Under CFL <= 1/2, this is a convex combination. Regrouping
+        # avoids premature 2*center overflow before exact cancellation.
+        value = math.fsum(((1.0 - 2.0 * r) * values[j],
+                           r * values[j - 1], r * values[j + 1]))
         if not math.isfinite(value):
             raise ArithmeticError("nonfinite PDE state; scale initial data")
         result.append(value)
@@ -162,8 +165,10 @@ def wave_1d_dirichlet(
     c2 = courant * courant
     second = [l]
     for j in range(1, len(first) - 1):
-        value = (first[j] + duration * velocities[j] +
-                 0.5 * c2 * (first[j - 1] - 2 * first[j] + first[j + 1]))
+        value = math.fsum(((1.0 - c2) * first[j],
+                           0.5 * c2 * first[j - 1],
+                           0.5 * c2 * first[j + 1],
+                           duration * velocities[j]))
         if not math.isfinite(value):
             raise ArithmeticError("nonfinite wave state")
         second.append(value)
@@ -174,8 +179,9 @@ def wave_1d_dirichlet(
     for _ in range(1, steps):
         following = [l]
         for j in range(1, len(first) - 1):
-            value = (2 * current[j] - previous[j] +
-                     c2 * (current[j - 1] - 2 * current[j] + current[j + 1]))
+            value = math.fsum((2.0 * (1.0 - c2) * current[j],
+                               -previous[j], c2 * current[j - 1],
+                               c2 * current[j + 1]))
             if not math.isfinite(value):
                 raise ArithmeticError("nonfinite wave state")
             following.append(value)

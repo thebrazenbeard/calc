@@ -179,9 +179,13 @@ def golden_section_minimize(
     max_iter = _count(max_iter)
     if a >= b or abs_tol <= 0:
         raise ValueError("require a < b and abs_tol > 0")
+    if not math.isfinite(b - a):
+        raise ValueError("minimization interval width exceeds finite float range")
     ratio = (math.sqrt(5) - 1) / 2
     c = b - ratio * (b - a)
     d = a + ratio * (b - a)
+    if not (a < c < d < b):
+        raise ConvergenceError("minimization interval has insufficient float resolution")
     fc, fd = _evaluate(f, c), _evaluate(f, d)
     for _ in range(max_iter):
         if b - a <= abs_tol:

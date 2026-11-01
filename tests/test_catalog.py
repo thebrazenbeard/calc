@@ -37,6 +37,7 @@ class CatalogTests(unittest.TestCase):
         self.assertEqual(get_topic("fractional").status, "implemented")
         self.assertEqual(get_topic("lambda-calculus").status, "implemented")
         self.assertEqual(get_topic("partial-differential-equations").status, "implemented")
+        self.assertEqual(get_topic("vector").status, "implemented")
         self.assertEqual(get_topic("malliavin").status, "documented")
 
 

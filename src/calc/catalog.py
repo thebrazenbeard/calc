@@ -68,7 +68,7 @@ _TITLES = {
 }
 
 _IMPLEMENTED = {
-    "differential", "multivariable", "finite-difference",
+    "differential", "multivariable", "vector", "finite-difference",
     "numerical-differentiation", "numerical-integration", "polynomial",
     "linear-algebra", "matrix", "ordinary-differential-equations",
     "fractional", "discrete", "q-calculus", "exterior",

@@ -9,6 +9,9 @@ This record distinguishes **GitHub writes/readbacks** from local tests and CI. I
 | Initial bootstrap | `9f2e8611c988bbea32dab8ac5eaca716bc784f83` | GitHub create-file response and commit fetch |
 | Wave 1 foundation on `main` | `81aebf196b2b742a3da7242e3357ea97c0baf4c8` | GitHub ref update and remote README/algebra file readback; 71/71 local tests |
 | Wave 2 on `main` | `97bc4f0ba576dd1cecf2e9500c6e186ca9dd23d9` | GitHub ref update; 135/135 local tests and README sample |
+| Wave 3 on `main` | `43d8aad9a0dfaf2bcec7fe8f0d0e25a45d5f6a87` | GitHub ref update and remote PDE/lambda/source receipt file readback; 213/213 local tests; Python wheel built and imports passed |
+
+Wave 4 review, including five module-focused independent hostile checks and a research-gap audit, raised the local suite to **261/261 passing tests** after repairs. The new tests cover overflow and precision failures in complex calculus, discrete transforms, PDEs, optimization and formal lambda-term reduction. Wave 4's exact remote head must be read back separately after publication.
 
 The standard-library tests were executed with Python 3.12 in a local isolated workspace. At the Wave 2 check, GitHub's combined status API returned an empty `statuses` list. That does **not** establish a passing cloud CI run. Branch workflows and test execution on GitHub were not independently read back.
 

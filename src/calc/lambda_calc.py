@@ -217,12 +217,25 @@ def beta_step(term: Term) -> Term | None:
     return None if argument is None else App(term.function, argument)
 
 
-def _count_nodes(term: Term) -> int:
-    if isinstance(term, Var):
-        return 1
-    if isinstance(term, Abs):
-        return 1 + _count_nodes(term.body)
-    return 1 + _count_nodes(term.function) + _count_nodes(term.argument)
+def _count_nodes(
+    term: Term, *, limit: int | None = None, depth_limit: int | None = None,
+) -> int:
+    """Count without recursion; reject deep manually constructed terms."""
+    count = 0
+    pending = [(term, 1)]
+    while pending:
+        node, depth = pending.pop()
+        count += 1
+        if limit is not None and count > limit:
+            return count
+        if depth_limit is not None and depth > depth_limit:
+            raise ReductionLimitExceeded("term nesting exceeds supported depth")
+        if isinstance(node, Abs):
+            pending.append((node.body, depth + 1))
+        elif isinstance(node, App):
+            pending.extend(((node.function, depth + 1),
+                            (node.argument, depth + 1)))
+    return count
 
 
 def _free_occurrences(term: Term, name: str) -> int:
@@ -265,22 +278,25 @@ def normalize(term: Term, *, max_steps: int = 1000, max_nodes: int = 20000) -> T
         raise ValueError("max_steps must be a nonnegative integer")
     if type(max_nodes) is not int or max_nodes < 1:
         raise ValueError("max_nodes must be a positive integer")
-    node_count = _count_nodes(term)
+    node_count = _count_nodes(term, limit=max_nodes, depth_limit=256)
     if node_count > max_nodes:
         raise ReductionLimitExceeded("initial term exceeds node budget")
-    for _ in range(max_steps):
-        change = _next_reduction_size_change(term)
-        if change is None:
-            return term
-        if node_count + change > max_nodes:
-            raise ReductionLimitExceeded("next reduction would exceed node budget")
-        reduced = beta_step(term)
-        if reduced is None:
-            raise AssertionError("normal-order step disagrees with size preflight")
-        node_count += change
-        term = reduced
-    if _next_reduction_size_change(term) is not None:
-        raise ReductionLimitExceeded("beta-reduction step budget exceeded")
+    try:
+        for _ in range(max_steps):
+            change = _next_reduction_size_change(term)
+            if change is None:
+                return term
+            if node_count + change > max_nodes:
+                raise ReductionLimitExceeded("next reduction would exceed node budget")
+            reduced = beta_step(term)
+            if reduced is None:
+                raise AssertionError("normal-order step disagrees with size preflight")
+            node_count += change
+            term = reduced
+        if _next_reduction_size_change(term) is not None:
+            raise ReductionLimitExceeded("beta-reduction step budget exceeded")
+    except RecursionError as exc:
+        raise ReductionLimitExceeded("term nesting exceeds supported recursion depth") from exc
     return term
 
 

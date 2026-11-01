@@ -45,11 +45,21 @@ def _finite_complex(value: Complex, name: str) -> complex:
 
 def _step(point: complex, step: Real | None) -> float:
     if step is None:
-        return 1e-5 * max(1.0, abs(point))
+        result = 1e-5 * max(1.0, abs(point))
+        if not math.isfinite(result):
+            raise ValueError("default step is not finite at this point")
+        return result
     result = _finite_real(step, "step")
     if result <= 0:
         raise ValueError("step must be positive")
     return result
+
+
+def _perturbed(point: complex, delta: complex) -> tuple[complex, complex]:
+    plus, minus = point + delta, point - delta
+    if plus == point or minus == point or plus == minus:
+        raise ValueError("step is not representable at this point and direction")
+    return plus, minus
 
 
 def complex_derivative(
@@ -69,10 +79,14 @@ def complex_derivative(
     d = _finite_complex(direction, "direction")
     if d == 0:
         raise ValueError("direction must be nonzero")
-    d /= abs(d)
+    norm = abs(d)
+    if not math.isfinite(norm):
+        raise ValueError("direction magnitude is not representable")
+    d /= norm
     h = _step(z, step)
-    numerator = _finite_complex(function(z + h*d), "function output")
-    numerator -= _finite_complex(function(z - h*d), "function output")
+    plus, minus = _perturbed(z, h*d)
+    numerator = _finite_complex(function(plus), "function output")
+    numerator -= _finite_complex(function(minus), "function output")
     return _finite_complex(numerator / (2*h*d), "derivative")
 
 
@@ -89,13 +103,15 @@ def cauchy_riemann_residual(
     """
     z = _finite_complex(point, "point")
     h = _step(z, step)
+    xp, xm = _perturbed(z, h)
+    yp, ym = _perturbed(z, 1j*h)
     dx = (
-        _finite_complex(function(z + h), "function output")
-        - _finite_complex(function(z - h), "function output")
+        _finite_complex(function(xp), "function output")
+        - _finite_complex(function(xm), "function output")
     ) / (2*h)
     dy = (
-        _finite_complex(function(z + 1j*h), "function output")
-        - _finite_complex(function(z - 1j*h), "function output")
+        _finite_complex(function(yp), "function output")
+        - _finite_complex(function(ym), "function output")
     ) / (2*h)
     return (
         _finite_real(dx.real - dy.imag, "Cauchy–Riemann residual"),
@@ -128,7 +144,12 @@ def contour_integral(
     n = _panels(panels)
     if a == b:
         return 0j
-    h = (b-a) / n
+    interval = b - a
+    if not math.isfinite(interval):
+        raise ValueError("contour parameter interval exceeds finite range")
+    h = interval / n
+    if h == 0 or a + h == a or b - h == b:
+        raise ValueError("contour parameter step is not representable")
 
     def integrand(t: float) -> complex:
         position = _finite_complex(path(t), "path output")
@@ -173,11 +194,21 @@ def winding_number(
     c = _finite_complex(center, "center")
     first = _finite_complex(path(a), "path start")
     last = _finite_complex(path(b), "path end")
-    scale = max(1.0, abs(first), abs(last), abs(c))
-    if abs(first-last) > min(tol, 1e-6) * scale:
+    local_radius = max(1.0, abs(first-c), abs(last-c))
+    # Absolute closure with a small allowance for representable coordinate
+    # rounding, not a relative tolerance inflated by a distant origin.
+    closure_tolerance = max(
+        min(tol, 1e-6),
+        4 * max(math.ulp(v) for v in
+                (first.real, first.imag, last.real, last.imag)),
+    )
+    if abs(first-last) > closure_tolerance:
         raise ValueError("winding number requires a closed path")
     for i in range(n+1):
-        if abs(_finite_complex(path(a + (b-a)*i/n), "path output")-c) <= 1e-12 * scale:
+        sample = _finite_complex(path(a + (b-a)*i/n), "path output")
+        roundoff = max(math.ulp(v) for v in
+                       (sample.real, sample.imag, c.real, c.imag))
+        if abs(sample-c) <= max(1e-12 * local_radius, 8 * roundoff):
             raise ValueError("path meets the winding center at a sampled point")
     integral = contour_integral(
         lambda z: 1/(z-c), path, path_derivative, a, b, panels=n

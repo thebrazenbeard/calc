@@ -130,9 +130,25 @@ def z_transform_finite(values: Sequence[Number], z: Number) -> complex:
         raise ValueError("z must be nonzero for this finite z-transform convention")
     terms: list[complex] = []
     for i, value in enumerate(x):
+        if value == 0:
+            # A mathematically zero term must not evaluate a potentially
+            # overflowing inverse power just to multiply it by zero.
+            continue
         try:
             term = value * z ** (-i)
-        except (ZeroDivisionError, OverflowError) as exc:
-            raise ValueError("z-transform term exceeds finite floating-point range") from exc
+        except (ZeroDivisionError, OverflowError):
+            term = complex(math.nan, 0)
+        if not (math.isfinite(term.real) and math.isfinite(term.imag)):
+            # z**(-i) may overflow before a tiny coefficient cancels its
+            # magnitude. Dividing the coefficient progressively avoids that
+            # false failure when the final term is representable.
+            term = value
+            for _ in range(i):
+                try:
+                    term /= z
+                except (ZeroDivisionError, OverflowError) as exc:
+                    raise ValueError("z-transform term exceeds finite floating-point range") from exc
+                if not (math.isfinite(term.real) and math.isfinite(term.imag)):
+                    raise ValueError("z-transform term exceeds finite floating-point range")
         terms.append(_finite_complex(term, f"z-transform term {i}"))
     return _sum_complex(terms)
