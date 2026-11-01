@@ -18,6 +18,7 @@ from __future__ import annotations
 
 from bisect import bisect_left
 from dataclasses import dataclass
+from fractions import Fraction
 import math
 from numbers import Real
 from collections.abc import Iterable, Callable
@@ -49,6 +50,47 @@ def _quotient(numerator: float, denominator: float) -> float:
     if not math.isfinite(value):
         raise ValueError("finite-difference quotient is not representable")
     return value
+
+
+def _difference_quotient(right_value: float, left_value: float, gap: float) -> float:
+    numerator = right_value - left_value
+    if math.isfinite(numerator):
+        return _quotient(numerator, gap)
+    # Finite endpoint values can have an overflowing difference even when
+    # their quotient is finite. Use exact binary64 rational values only for
+    # this exceptional path, avoiding an unnecessary false overflow.
+    exact = ((Fraction.from_float(right_value) - Fraction.from_float(left_value))
+             / Fraction.from_float(gap))
+    try:
+        value = float(exact)
+    except OverflowError as exc:
+        raise ValueError("finite-difference quotient is not representable") from exc
+    if not math.isfinite(value):
+        raise ValueError("finite-difference quotient is not representable")
+    return value
+
+
+def _finite_weighted_sum(pairs: list[tuple[float, float]], sign: float,
+                         name: str) -> float:
+    """Weighted float sum, recovering finite cancellation after term overflow."""
+    terms = [value * gap for value, gap in pairs]
+    if all(math.isfinite(term) for term in terms):
+        try:
+            result = sign * math.fsum(terms)
+        except (OverflowError, ValueError):
+            pass
+        else:
+            if math.isfinite(result):
+                return result
+    exact = sum((Fraction.from_float(value) * Fraction.from_float(gap)
+                 for value, gap in pairs), Fraction(0))
+    try:
+        result = float(exact) * sign
+    except OverflowError as exc:
+        raise ValueError(f"{name} is outside finite float range") from exc
+    if not math.isfinite(result):
+        raise ValueError(f"{name} is outside finite float range")
+    return result
 
 
 @dataclass(frozen=True, slots=True, init=False)
@@ -121,7 +163,7 @@ class FiniteTimeScale:
         if i == len(self.points) - 1:
             raise ValueError("delta derivative undefined at finite time-scale maximum")
         left, right = self.points[i:i + 2]
-        return _quotient(_evaluate(function, right) - _evaluate(function, left), right - left)
+        return _difference_quotient(_evaluate(function, right), _evaluate(function, left), right - left)
 
     def nabla_derivative(self, function: RealFunction, point: Real) -> float:
         """Discrete nabla derivative at noninitial left-scattered t."""
@@ -129,7 +171,7 @@ class FiniteTimeScale:
         if i == 0:
             raise ValueError("nabla derivative undefined at finite time-scale minimum")
         left, right = self.points[i - 1:i + 1]
-        return _quotient(_evaluate(function, right) - _evaluate(function, left), right - left)
+        return _difference_quotient(_evaluate(function, right), _evaluate(function, left), right - left)
 
     def delta_integral(self, function: RealFunction, start: Real, stop: Real) -> float:
         """Finite delta integral Σ f(t_i)·(t_{i+1}-t_i), left-sampled.
@@ -144,13 +186,11 @@ class FiniteTimeScale:
         sign = 1.0
         if i > j:
             i, j, sign = j, i, -1.0
-        terms: list[float] = []
+        pairs: list[tuple[float, float]] = []
         for k in range(i, j):
-            term = _evaluate(function, self.points[k]) * (self.points[k + 1] - self.points[k])
-            if not math.isfinite(term):
-                raise ValueError("finite delta integral term overflowed")
-            terms.append(term)
-        return _real(sign * math.fsum(terms), "delta integral")
+            pairs.append((_evaluate(function, self.points[k]),
+                          self.points[k + 1] - self.points[k]))
+        return _finite_weighted_sum(pairs, sign, "delta integral")
 
     def nabla_integral(self, function: RealFunction, start: Real, stop: Real) -> float:
         """Finite nabla integral Σ f(t_i)·(t_i-t_{i-1}), right-sampled."""
@@ -162,10 +202,8 @@ class FiniteTimeScale:
         sign = 1.0
         if i > j:
             i, j, sign = j, i, -1.0
-        terms: list[float] = []
+        pairs: list[tuple[float, float]] = []
         for k in range(i + 1, j + 1):
-            term = _evaluate(function, self.points[k]) * (self.points[k] - self.points[k - 1])
-            if not math.isfinite(term):
-                raise ValueError("finite nabla integral term overflowed")
-            terms.append(term)
-        return _real(sign * math.fsum(terms), "nabla integral")
+            pairs.append((_evaluate(function, self.points[k]),
+                          self.points[k] - self.points[k - 1]))
+        return _finite_weighted_sum(pairs, sign, "nabla integral")

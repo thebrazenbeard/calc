@@ -78,6 +78,7 @@ _IMPLEMENTED = {
     "tropical-algebra", "complex-analysis", "integral-transforms",
     "partial-differential-equations", "lambda-calculus", "root-finding",
     "numerical-optimization", "computational-algebra", "time-scales", "interval",
+    "stratonovich", "nonsmooth", "subdifferential", "exterior-algebra",
 }
 
 TOPICS: tuple[Topic, ...] = tuple(

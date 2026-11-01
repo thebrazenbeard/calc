@@ -16,6 +16,7 @@ An open, source-conscious **atlas of calculus and algebra**: a taxonomy of mathe
 - `docs/topics/` — individually researched subject guides and worked examples.
 - `src/calc/topic_manifest.json` — machine-readable scope, tests, source IDs, and formal-proof status for each indexed topic.
 - `docs/EVIDENCE_MODEL.md` — how catalogue labels map to evidence rather than whole-field claims.
+- `docs/REVIEW_WAVE5.md` — hostile numerical review and regression evidence from the subsequent build wave.
 
 The CLI shows the subject map without executing arbitrary mathematical expressions:
 
@@ -64,6 +65,11 @@ The Python package is intentionally modular. Each file declares its numerical or
 | `time_scales` | Finite-grid delta/nabla differences and integrals |
 | `fractional` | Explicit Caputo/Riemann–Liouville power derivatives and bounded GL approximation |
 | `intervals` | Binary64 interval enclosures with outward rounding |
+| `forms` | Exact rational exterior forms, wedge products, Euclidean Hodge stars |
+| `nonsmooth` | Exact scalar convex subgradients and proximal examples |
+| `discrete` | Rational finite differences, summation by parts and power sums |
+| `stochastic_conventions` | Itô–Stratonovich drift conversion and finite-grid Stratonovich Heun |
+| `spectral` | Symmetric Jacobi eigendecomposition and residual diagnostics; not a PDE spectral solver |
 
 For instance, exact algebra and numerical integration can coexist without conflating their guarantees:
 

@@ -10,14 +10,16 @@ This record distinguishes **GitHub writes/readbacks** from local tests and CI. I
 | Wave 1 foundation on `main` | `81aebf196b2b742a3da7242e3357ea97c0baf4c8` | GitHub ref update and remote README/algebra file readback; 71/71 local tests |
 | Wave 2 on `main` | `97bc4f0ba576dd1cecf2e9500c6e186ca9dd23d9` | GitHub ref update; 135/135 local tests and README sample |
 | Wave 3 on `main` | `43d8aad9a0dfaf2bcec7fe8f0d0e25a45d5f6a87` | GitHub ref update and remote PDE/lambda/source receipt file readback; 213/213 local tests; Python wheel built and imports passed |
+| Wave 4 hardened `main` | `c4df9e25ce23ef553b988f4b156c0e097b5065f1` | GitHub exact-ref readback; 261/261 local tests; repaired precision, overflow and lambda-resource defects |
+| Wave 5 evidence/algorithms `main` | `a6e1787781a2f443766af386cdfd6606cb845070` | GitHub exact-ref readback; remote manifest and Gröbner source readback; 339/339 local tests; wheel import of packaged manifest |
 
-Wave 4 review, including five module-focused independent hostile checks and a research-gap audit, raised the local suite to **261/261 passing tests** after repairs. The new tests cover overflow and precision failures in complex calculus, discrete transforms, PDEs, optimization and formal lambda-term reduction. Wave 4's exact remote head must be read back separately after publication.
+Wave 4 review, including five module-focused independent hostile checks and a research-gap audit, raised the local suite to **261/261 passing tests** after repairs. The new tests cover overflow and precision failures in complex calculus, discrete transforms, PDEs, optimization and formal lambda-term reduction. The exact Wave 4 remote head was read back before subsequent waves were published.
 
 The standard-library tests were executed with Python 3.12 in a local isolated workspace. At the Wave 2 check, GitHub's combined status API returned an empty `statuses` list. That does **not** establish a passing cloud CI run. Branch workflows and test execution on GitHub were not independently read back.
 
 ## Curated subject branches
 
-Each branch started from the exact Wave 2 `main` commit above and received its own `TOPIC.md` with an original subject guide. GitHub content readback checked that file's slug on all 19 branches; no failures were observed. These branches are **research/teaching entry points**, not independently complete solvers.
+Each branch started from the exact Wave 2 `main` commit above and received its own `TOPIC.md` with an original subject guide. GitHub content readback checked that file's slug on all 19 branches; no failures were observed. All 19 branches were subsequently merged forward to the Wave 4 shared foundation; the table below records their **original topic-guide commits**, not their present branch heads. These branches are **research/teaching entry points**, not independently complete solvers.
 
 | Branch | Exact `TOPIC.md` commit SHA |
 | --- | --- |
@@ -44,6 +46,6 @@ Each branch started from the exact Wave 2 `main` commit above and received its o
 ## Known boundaries
 
 - The catalogue is open-ended: an indexed name is not an implementation or a proof.
-- The topic branches are intentionally pinned to a known Wave 2 foundation; later `main` fixes do not automatically propagate into their history.
+- The 19 topic branches were verified at Wave 4; later `main` changes are not automatically present on them until the next explicit merge-forward.
 - No repository license has been chosen. The 34 linked external research sources have independent terms.
 - The recorded tests do not formally verify the numerical or stochastic algorithms for all possible inputs.

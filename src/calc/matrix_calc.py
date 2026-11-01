@@ -82,6 +82,55 @@ def _sum_terms(values: Sequence[Fraction | float], exact: bool) -> Fraction | fl
     return result
 
 
+def _sum_products(pairs: Sequence[tuple[Fraction | float, Fraction | float]],
+                  exact: bool) -> Fraction | float:
+    """Sum products, preserving a finite answer when float terms overflow.
+
+    Normal finite arithmetic uses ``math.fsum``. Only an exceptional float
+    overflow triggers exact reconstruction of the supplied binary64 inputs.
+    This does not turn ordinary inexact input values into symbolic values.
+    """
+    if exact:
+        return sum((left * right for left, right in pairs), Fraction(0))
+    terms = [float(left) * float(right) for left, right in pairs]
+    if all(math.isfinite(term) for term in terms):
+        try:
+            result = math.fsum(terms)
+        except (OverflowError, ValueError):
+            pass
+        else:
+            if math.isfinite(result):
+                return result
+    total = sum((Fraction.from_float(float(left)) * Fraction.from_float(float(right))
+                 for left, right in pairs), Fraction(0))
+    try:
+        value = float(total)
+    except OverflowError as exc:
+        raise ValueError("matrix arithmetic overflowed") from exc
+    if not math.isfinite(value):
+        raise ValueError("matrix arithmetic overflowed")
+    return value
+
+
+def _central_quotient(plus: float, minus: float, step: float, name: str) -> float:
+    """Central-difference quotient with a binary64-exact overflow fallback."""
+    numerator = plus - minus
+    denominator = 2 * step
+    if math.isfinite(numerator) and math.isfinite(denominator):
+        value = numerator / denominator
+        if math.isfinite(value):
+            return value
+    exact = ((Fraction.from_float(plus) - Fraction.from_float(minus)) /
+             (2 * Fraction.from_float(step)))
+    try:
+        value = float(exact)
+    except OverflowError as exc:
+        raise ValueError(f"{name} is nonfinite") from exc
+    if not math.isfinite(value):
+        raise ValueError(f"{name} is nonfinite")
+    return value
+
+
 def frobenius_inner(
     left: Sequence[Sequence[RealScalar]], right: Sequence[Sequence[RealScalar]],
 ) -> Fraction | float:
@@ -90,8 +139,8 @@ def frobenius_inner(
     if (len(a), len(a[0])) != (len(b), len(b[0])):
         raise ValueError("Frobenius inner product requires matching dimensions")
     exact = all(isinstance(v, Fraction) for row in a+b for v in row)
-    return _sum_terms([a[i][j] * b[i][j]
-                       for i in range(len(a)) for j in range(len(a[0]))], exact)
+    return _sum_products([(a[i][j], b[i][j])
+                          for i in range(len(a)) for j in range(len(a[0]))], exact)
 
 
 def squared_frobenius_gradient(matrix: Sequence[Sequence[RealScalar]]) -> Matrix:
@@ -117,7 +166,7 @@ def trace_axb_gradient(
     if len(b[0]) != p:
         raise ValueError("A:p×m and B:n×p need matching trace dimension p")
     exact = all(isinstance(v, Fraction) for row in a+b for v in row)
-    return tuple(tuple(_sum_terms([a[k][i] * b[j][k] for k in range(p)], exact)
+    return tuple(tuple(_sum_products([(a[k][i], b[j][k]) for k in range(p)], exact)
                        for j in range(n)) for i in range(m))
 
 
@@ -165,9 +214,7 @@ def matrix_gradient(
             minus = _shift_one(x, i, j, -h)
             f_plus = _finite_float(function(plus), "function output")
             f_minus = _finite_float(function(minus), "function output")
-            derivative = (f_plus-f_minus)/(2*h)
-            if not math.isfinite(derivative):
-                raise ValueError("matrix gradient is nonfinite")
+            derivative = _central_quotient(f_plus, f_minus, h, "matrix gradient")
             output.append(derivative)
         results.append(tuple(output))
     return tuple(results)
@@ -217,7 +264,8 @@ def matrix_jvp(
     minus_result = _float_matrix(transform(tuple(minus_rows)), "transform output")
     if (len(plus_result),len(plus_result[0])) != (len(minus_result),len(minus_result[0])):
         raise ValueError("transform output shape changes under perturbation")
-    values = tuple(tuple((plus_result[i][j]-minus_result[i][j])/(2*h)
+    values = tuple(tuple(_central_quotient(plus_result[i][j], minus_result[i][j],
+                                          h, "matrix Jacobian-vector product")
                          for j in range(len(plus_result[0]))) for i in range(len(plus_result)))
     if any(not math.isfinite(v) for row in values for v in row):
         raise ValueError("matrix Jacobian-vector product is nonfinite")

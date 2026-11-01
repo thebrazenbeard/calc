@@ -255,7 +255,7 @@
       "slug": "differential-forms",
       "family": "calculus-multivariable",
       "kind": "analysis",
-      "scope": "Exterior derivatives of smooth zero- and one-forms in coordinates.",
+      "scope": "Exterior derivatives of low-degree coordinate forms plus finite-dimensional rational wedge and Euclidean Hodge-star operations.",
       "status": "implemented",
       "evidence_level": "example_tested",
       "guide": null,
@@ -270,10 +270,20 @@
             "exterior_derivative_0",
             "exterior_derivative_1"
           ]
+        },
+        {
+          "module": "calc.forms",
+          "symbols": [
+            "Form",
+            "basis_form",
+            "wedge",
+            "hodge_star"
+          ]
         }
       ],
       "test_paths": [
-        "tests/test_geometry.py"
+        "tests/test_geometry.py",
+        "tests/test_forms.py"
       ],
       "formal_proof": false
     },
@@ -296,10 +306,18 @@
           "symbols": [
             "wedge"
           ]
+        },
+        {
+          "module": "calc.forms",
+          "symbols": [
+            "wedge",
+            "hodge_star"
+          ]
         }
       ],
       "test_paths": [
-        "tests/test_advanced.py"
+        "tests/test_advanced.py",
+        "tests/test_forms.py"
       ],
       "formal_proof": false
     },
@@ -563,10 +581,18 @@
             "euler_maruyama",
             "geometric_brownian_terminal"
           ]
+        },
+        {
+          "module": "calc.stochastic_conventions",
+          "symbols": [
+            "stratonovich_to_ito_drift",
+            "brownian_square_integrals"
+          ]
         }
       ],
       "test_paths": [
-        "tests/test_stochastic.py"
+        "tests/test_stochastic.py",
+        "tests/test_stochastic_conventions.py"
       ],
       "formal_proof": false
     },
@@ -574,16 +600,27 @@
       "slug": "stratonovich",
       "family": "calculus-generalizations",
       "kind": "analysis",
-      "scope": "Stratonovich stochastic integration and its chain-rule conventions.",
-      "status": "documented",
-      "evidence_level": "indexed_only",
+      "scope": "Scalar smooth-diffusion drift conversions, finite-grid Stratonovich Heun approximation, and Brownian square witnesses.",
+      "status": "implemented",
+      "evidence_level": "example_tested",
       "guide": null,
       "branch": null,
       "source_ids": [
         "S24"
       ],
-      "bindings": [],
-      "test_paths": [],
+      "bindings": [
+        {
+          "module": "calc.stochastic_conventions",
+          "symbols": [
+            "stratonovich_to_ito_drift",
+            "ito_to_stratonovich_drift",
+            "stratonovich_heun"
+          ]
+        }
+      ],
+      "test_paths": [
+        "tests/test_stochastic_conventions.py"
+      ],
       "formal_proof": false
     },
     {
@@ -621,10 +658,19 @@
           "symbols": [
             "finite_difference"
           ]
+        },
+        {
+          "module": "calc.discrete",
+          "symbols": [
+            "forward_differences",
+            "discrete_integral",
+            "power_sum"
+          ]
         }
       ],
       "test_paths": [
-        "tests/test_advanced.py"
+        "tests/test_advanced.py",
+        "tests/test_discrete.py"
       ],
       "formal_proof": false
     },
@@ -799,32 +845,54 @@
       "slug": "nonsmooth",
       "family": "calculus-generalizations",
       "kind": "analysis",
-      "scope": "Generalized derivatives of locally Lipschitz nonsmooth functions.",
-      "status": "documented",
-      "evidence_level": "indexed_only",
+      "scope": "Exact rational convex piecewise-linear subgradients and scalar proximal examples; not arbitrary locally Lipschitz functions.",
+      "status": "implemented",
+      "evidence_level": "example_tested",
       "guide": null,
       "branch": null,
       "source_ids": [
         "S18"
       ],
-      "bindings": [],
-      "test_paths": [],
+      "bindings": [
+        {
+          "module": "calc.nonsmooth",
+          "symbols": [
+            "ConvexPiecewiseLinear",
+            "soft_threshold",
+            "prox_hinge"
+          ]
+        }
+      ],
+      "test_paths": [
+        "tests/test_nonsmooth.py"
+      ],
       "formal_proof": false
     },
     {
       "slug": "subdifferential",
       "family": "calculus-generalizations",
       "kind": "analysis",
-      "scope": "Convex and Clarke subgradients where ordinary gradients do not exist.",
-      "status": "documented",
-      "evidence_level": "indexed_only",
+      "scope": "Convex scalar subgradients at piecewise-linear kinks, with Clarke agreement only in the convex examples.",
+      "status": "implemented",
+      "evidence_level": "example_tested",
       "guide": null,
       "branch": null,
       "source_ids": [
         "S18"
       ],
-      "bindings": [],
-      "test_paths": [],
+      "bindings": [
+        {
+          "module": "calc.nonsmooth",
+          "symbols": [
+            "ConvexPiecewiseLinear",
+            "absolute_subgradient",
+            "hinge_subgradient"
+          ]
+        }
+      ],
+      "test_paths": [
+        "tests/test_nonsmooth.py"
+      ],
       "formal_proof": false
     },
     {
@@ -1386,16 +1454,28 @@
       "slug": "exterior-algebra",
       "family": "algebra-structures",
       "kind": "algebra",
-      "scope": "Alternating multilinear exterior algebra and wedge identities.",
-      "status": "documented",
-      "evidence_level": "indexed_only",
+      "scope": "Finite-dimensional rational exterior algebra, wedge identities, and Hodge star in oriented Euclidean bases.",
+      "status": "implemented",
+      "evidence_level": "example_tested",
       "guide": null,
       "branch": null,
       "source_ids": [
         "S20"
       ],
-      "bindings": [],
-      "test_paths": [],
+      "bindings": [
+        {
+          "module": "calc.forms",
+          "symbols": [
+            "Form",
+            "wedge",
+            "hodge_star",
+            "inner_product"
+          ]
+        }
+      ],
+      "test_paths": [
+        "tests/test_forms.py"
+      ],
       "formal_proof": false
     },
     {
