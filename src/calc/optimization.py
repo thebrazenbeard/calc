@@ -101,10 +101,13 @@ def bisection(
         fm = _evaluate(f, mid)
         if fm == 0:
             return mid
-        if mid == a or mid == b or _width_small(a, b, abs_tol, rel_tol):
-            if abs(fm) <= f_tol:
-                return mid
-            raise ConvergenceError("bracket shrank without satisfying residual tolerance")
+        if _width_small(a, b, abs_tol, rel_tol) and abs(fm) <= f_tol:
+            return mid
+        if mid == a or mid == b:
+            # Horizontal accuracy alone cannot establish a root at a jump.
+            # Keep bisecting while float midpoints are distinct; reject only
+            # when no further representable subdivision is available.
+            raise ConvergenceError("floating-point resolution exhausted before residual tolerance")
         if _opposite(fa, fm):
             b, fb = mid, fm
         else:
@@ -145,10 +148,8 @@ def safeguarded_newton(
             b, fb = x, fx
         else:
             a, fa = x, fx
-        if _width_small(a, b, abs_tol, rel_tol):
-            if abs(fx) <= f_tol:
-                return x
-            raise ConvergenceError("bracket shrank without satisfying residual tolerance")
+        if _width_small(a, b, abs_tol, rel_tol) and abs(fx) <= f_tol:
+            return x
         # Nonfinite or zero derivatives trigger safe bisection. The candidate
         # must stay away from the bracket's edges to ensure shrinkage.
         try:
