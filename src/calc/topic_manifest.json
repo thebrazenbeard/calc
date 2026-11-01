@@ -759,16 +759,28 @@
       "slug": "umbral",
       "family": "calculus-generalizations",
       "kind": "analysis",
-      "scope": "Shift-invariant delta operators and polynomial sequence calculus.",
-      "status": "documented",
-      "evidence_level": "indexed_only",
+      "scope": "Bounded exact classical falling-factorial difference calculus, Stirling basis transforms, and Newton interpolation.",
+      "status": "implemented",
+      "evidence_level": "example_tested",
       "guide": null,
       "branch": null,
       "source_ids": [
         "S21"
       ],
-      "bindings": [],
-      "test_paths": [],
+      "bindings": [
+        {
+          "module": "calc.umbral",
+          "symbols": [
+            "falling_factorial",
+            "stirling_first",
+            "forward_difference",
+            "newton_forward_interpolate"
+          ]
+        }
+      ],
+      "test_paths": [
+        "tests/test_umbral.py"
+      ],
       "formal_proof": false
     },
     {
@@ -961,16 +973,35 @@
       "slug": "spectral-methods",
       "family": "calculus-computation",
       "kind": "computation",
-      "scope": "Orthogonal-basis approximations to differential equations.",
-      "status": "documented",
-      "evidence_level": "indexed_only",
+      "scope": "Finite-degree Chebyshev-Lobatto interpolation/differentiation and symmetric eigendecomposition; no general spectral PDE solver.",
+      "status": "implemented",
+      "evidence_level": "example_tested",
       "guide": null,
       "branch": null,
       "source_ids": [
         "S09"
       ],
-      "bindings": [],
-      "test_paths": [],
+      "bindings": [
+        {
+          "module": "calc.collocation",
+          "symbols": [
+            "chebyshev_lobatto_nodes",
+            "barycentric_interpolate",
+            "differentiate_at_nodes"
+          ]
+        },
+        {
+          "module": "calc.spectral",
+          "symbols": [
+            "jacobi_eigen",
+            "eigen_residuals"
+          ]
+        }
+      ],
+      "test_paths": [
+        "tests/test_collocation.py",
+        "tests/test_spectral.py"
+      ],
       "formal_proof": false
     },
     {
@@ -1480,16 +1511,26 @@
       "slug": "tensor-algebra",
       "family": "algebra-structures",
       "kind": "algebra",
-      "scope": "Associative algebra of tensor powers and graded multiplication.",
-      "status": "documented",
-      "evidence_level": "indexed_only",
+      "scope": "Finite-rank dense rational component tensors, tensor products, permutations, and contractions in fixed bases.",
+      "status": "implemented",
+      "evidence_level": "example_tested",
       "guide": null,
       "branch": null,
       "source_ids": [
         "S16"
       ],
-      "bindings": [],
-      "test_paths": [],
+      "bindings": [
+        {
+          "module": "calc.tensors",
+          "symbols": [
+            "Tensor",
+            "identity_tensor"
+          ]
+        }
+      ],
+      "test_paths": [
+        "tests/test_tensors.py"
+      ],
       "formal_proof": false
     },
     {
@@ -1576,16 +1617,26 @@
       "slug": "homological-algebra",
       "family": "algebra-structures",
       "kind": "algebra",
-      "scope": "Chain complexes, kernels, exactness, and homology groups.",
-      "status": "documented",
-      "evidence_level": "indexed_only",
+      "scope": "Finite rational chain-complex validation, boundary ranks, Betti numbers, and Euler-Poincare identity.",
+      "status": "implemented",
+      "evidence_level": "example_tested",
       "guide": null,
       "branch": null,
       "source_ids": [
         "S29"
       ],
-      "bindings": [],
-      "test_paths": [],
+      "bindings": [
+        {
+          "module": "calc.homology",
+          "symbols": [
+            "ChainComplex",
+            "rational_rank"
+          ]
+        }
+      ],
+      "test_paths": [
+        "tests/test_homology.py"
+      ],
       "formal_proof": false
     },
     {
@@ -1650,16 +1701,28 @@
       "slug": "category-theory",
       "family": "algebra-structures",
       "kind": "algebra",
-      "scope": "Objects, morphisms, composition, and categorical universal properties.",
-      "status": "documented",
-      "evidence_level": "indexed_only",
+      "scope": "Validated small finite categories, composition laws, functors, and natural transformations.",
+      "status": "implemented",
+      "evidence_level": "example_tested",
       "guide": null,
       "branch": null,
       "source_ids": [
         "S13"
       ],
-      "bindings": [],
-      "test_paths": [],
+      "bindings": [
+        {
+          "module": "calc.categories",
+          "symbols": [
+            "FiniteCategory",
+            "FiniteFunctor",
+            "NaturalTransformation",
+            "poset_category"
+          ]
+        }
+      ],
+      "test_paths": [
+        "tests/test_categories.py"
+      ],
       "formal_proof": false
     },
     {

@@ -18,6 +18,8 @@ An open, source-conscious **atlas of calculus and algebra**: a taxonomy of mathe
 - `docs/EVIDENCE_MODEL.md` — how catalogue labels map to evidence rather than whole-field claims.
 - `docs/REVIEW_WAVE5.md` — hostile numerical review and regression evidence from the subsequent build wave.
 - `docs/REVIEW_WAVE6.md` — independent algebraic, stochastic and spectral verification, including repaired edge cases.
+- `docs/REVIEW_WAVE7.md` — independent verification of geometric algebra and numerical PDE modules.
+- `docs/REVIEW_WAVE8.md` — independent verification of spectral/umbral/categorical/homological/tensor modules.
 
 The CLI shows the subject map without executing arbitrary mathematical expressions:
 
@@ -76,6 +78,11 @@ The Python package is intentionally modular. Each file declares its numerical or
 | `distributions` | Compact rational step functions, Dirac jump derivatives and weak pairings |
 | `fem` | Exact-rational 1D piecewise-linear Poisson finite-element assembly and solution |
 | `finite_volumes` | Conservative 1D periodic upwind advection with CFL checks |
+| `collocation` | Chebyshev–Lobatto interpolation and nodal polynomial differentiation |
+| `umbral` | Exact falling-factorial difference operators, Stirling numbers and Newton interpolation |
+| `categories` | Finite categories, composition/identity verification, functors, natural transformations |
+| `homology` | Exact rational chain complexes, boundary ranks and Betti-number computations |
+| `tensors` | Fixed-basis rational tensor products, permutations and contractions |
 
 For instance, exact algebra and numerical integration can coexist without conflating their guarantees:
 

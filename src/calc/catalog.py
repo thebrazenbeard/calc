@@ -81,6 +81,8 @@ _IMPLEMENTED = {
     "stratonovich", "nonsmooth", "subdifferential", "exterior-algebra",
     "distributional", "finite-elements", "finite-volumes", "lie-algebra",
     "clifford-algebra", "geometric-algebra",
+    "spectral-methods", "umbral", "category-theory", "homological-algebra",
+    "tensor-algebra",
 }
 
 TOPICS: tuple[Topic, ...] = tuple(
