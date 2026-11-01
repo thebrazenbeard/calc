@@ -70,6 +70,11 @@ _IMPLEMENTED = {
     "differential", "multivariable", "finite-difference",
     "numerical-differentiation", "numerical-integration", "polynomial",
     "linear-algebra", "matrix", "ordinary-differential-equations",
+    "fractional", "discrete", "q-calculus", "exterior",
+    "differential-geometry", "differential-forms", "calculus-of-variations",
+    "stochastic", "ito", "automatic-differentiation", "symbolic-calculus",
+    "abstract-algebra", "group-theory", "field-theory", "boolean-algebra",
+    "tropical-algebra",
 }
 
 TOPICS: tuple[Topic, ...] = tuple(

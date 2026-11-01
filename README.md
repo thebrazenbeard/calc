@@ -12,6 +12,8 @@ An open, source-conscious **atlas of calculus and algebra**: a taxonomy of mathe
 - `docs/SOURCES.md` — upstream references, provenance, and license notes.
 - `docs/ADVANCED_METHODS.md` — assumptions and limits of advanced examples.
 - `docs/REVIEW.md` — adversarial technical review and known gaps.
+- `docs/BRANCHES.md` — rules and topic-branch manifest.
+- `docs/topics/` — individually researched subject guides and worked examples.
 
 The CLI shows the subject map without executing arbitrary mathematical expressions:
 
@@ -33,6 +35,36 @@ PYTHONPATH=src python -m unittest discover -s tests -v
 | Algebra | Polynomial, linear, abstract, Boolean, Lie, Clifford, geometric, tropical, homological | Selected exact algebra operations and references |
 
 **Names matter:** Lambda calculus is a formal system of computation; relational calculus is a query formalism. Neither is a variant of real-variable differentiation. The catalogue distinguishes them rather than falsely asserting a common derivative operator.
+
+## Executable building blocks
+
+The Python package is intentionally modular. Each file declares its numerical or algebraic contract instead of claiming a universal solution:
+
+| Module | Included demonstrations |
+| --- | --- |
+| `algebra` | Exact rational polynomials, matrix operations, linear systems, modular arithmetic |
+| `differential` | Derivatives, gradients, Jacobians, Hessians, vector differential operators |
+| `numerical` | Trapezoid/Simpson quadrature, scalar/vector Euler and RK4 |
+| `advanced` | Fractional power integrals, q-/finite differences, wedges, variational residuals |
+| `autodiff` | Forward-mode dual-number differentiation |
+| `symbolic` | Restricted expression trees and symbolic differentiation, not arbitrary evaluation |
+| `stochastic` | Brownian paths, quadratic variation, Euler–Maruyama, geometric Brownian motion |
+| `geometry` | Metrics, coordinate transformations, Christoffel symbols, exterior derivatives |
+| `structures` | Finite-group validation, prime fields, Boolean algebra, tropical semirings |
+
+For instance, exact algebra and numerical integration can coexist without conflating their guarantees:
+
+```python
+from fractions import Fraction
+from calc.algebra import Polynomial
+from calc.numerical import simpson
+
+p = Polynomial((1, 0, 1))   # 1 + x^2
+assert p.differentiate().coefficients == (Fraction(0), Fraction(2))
+assert abs(simpson(lambda x: x*x, 0, 1, n=100) - 1/3) < 1e-12
+```
+
+The fractional, stochastic, symbolic, and geometry modules each cover **specific examples**, not entire theories. A passing test proves its stated contract only. See module documentation for limitations.
 
 ## Branch-per-paradigm policy
 

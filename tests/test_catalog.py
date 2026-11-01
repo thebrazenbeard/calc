@@ -1,6 +1,8 @@
 """Stable discovery contracts for the subject index."""
 
 import unittest
+from contextlib import redirect_stdout
+from io import StringIO
 
 from calc.catalog import TOPICS, get_topic, list_topics
 from calc.__main__ import main
@@ -25,7 +27,15 @@ class CatalogTests(unittest.TestCase):
             get_topic("nonexistent")
 
     def test_cli(self):
-        self.assertEqual(main(["topic", "ito"]), 0)
+        output = StringIO()
+        with redirect_stdout(output):
+            self.assertEqual(main(["topic", "ito"]), 0)
+        self.assertIn("Itô calculus", output.getvalue())
+
+    def test_implemented_means_a_specific_example(self):
+        self.assertEqual(get_topic("automatic-differentiation").status, "implemented")
+        self.assertEqual(get_topic("fractional").status, "implemented")
+        self.assertEqual(get_topic("malliavin").status, "documented")
 
 
 if __name__ == "__main__":
