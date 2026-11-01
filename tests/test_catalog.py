@@ -35,6 +35,9 @@ class CatalogTests(unittest.TestCase):
     def test_implemented_means_a_specific_example(self):
         self.assertEqual(get_topic("automatic-differentiation").status, "implemented")
         self.assertEqual(get_topic("fractional").status, "implemented")
+        self.assertEqual(get_topic("lambda-calculus").status, "implemented")
+        self.assertEqual(get_topic("partial-differential-equations").status, "implemented")
+        self.assertEqual(get_topic("vector").status, "implemented")
         self.assertEqual(get_topic("malliavin").status, "documented")
 
 
