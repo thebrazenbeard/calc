@@ -125,10 +125,12 @@ def euler_maruyama(
     trajectory: list[tuple[float, float]] = [(start_t, value)]
     for i, dw in enumerate(noise):
         t = _real(start_t + i * delta, "time")
+        next_t = _real(start_t + (i + 1) * delta, "time")
+        if next_t <= t:
+            raise ValueError("dt cannot advance time at this magnitude")
         a = _real(drift(t, value), "drift value")
         b = _real(diffusion(t, value), "diffusion value")
         value = _real(value + a * delta + b * dw, "updated state")
-        next_t = _real(start_t + (i + 1) * delta, "time")
         trajectory.append((next_t, value))
     return tuple(trajectory)
 
