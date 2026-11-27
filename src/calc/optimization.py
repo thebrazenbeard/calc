@@ -201,7 +201,7 @@ def golden_section_minimize(
             a, c, fc = c, d, fd
             d = a + ratio * (b - a)
             fd = _evaluate(f, d)
-    else:
+    if b - a > abs_tol:
         raise ConvergenceError("golden-section iteration budget exhausted")
     candidates = ((a, _evaluate(f, a)), (b, _evaluate(f, b)), (c, fc), (d, fd))
     return min(candidates, key=lambda item: item[1])[0]
